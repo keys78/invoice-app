@@ -1,32 +1,83 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
+  <div class="bg-gray-200">
+    
+      <div v-if="showModal" class="animate">
+      <Modal @close="toggleModal"/>
+      </div>
+ 
+
+    <div class="sidebar fixed left-0 px rounded-r-2xl h-screen">
+      <div class="logo-holder w-full py-10 rounded-r-2xl">
+        <img class="mx-auto" src="./assets/images/logo.svg" alt="sidepanel" />
+      </div>
     </div>
-    <router-view/>
+
+      <div class="main w-6/12 h-screen mx-auto border border-current">
+
+        <div class="flex justify-between">
+
+          <div class="text-3xl font-bold">Invoice</div>
+
+          <button @click="toggleModal" class="flex gap-5 rounded-2xl ">
+            <img src="./assets/images/icon-plus.svg" alt="plus-icon" />
+            <Button text="New Invoice" class=""/>
+          </button>
+
+        </div>
+   
+      </div>
+
   </div>
 </template>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
 
-#nav {
-  padding: 30px;
-}
+<script >
+import Modal from './Modal.vue'
+import Button from './components/Button.vue'
 
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
+  export default {
+    name: 'App',
+    components: {
+      Modal,
+      Button
+    },
+    data() {
+      return {
+        showModal: true,
+      }
+    },
+    methods: {
+      toggleModal() {
+        this.showModal = !this.showModal
+      }
+    }
+  }
+</script>
 
-#nav a.router-link-exact-active {
-  color: #42b983;
-}
+
+<style >
+  .spartan{
+    font-family: 'Spartan', sans-serif;
+  }
+  .sidebar{
+    background: #373b53;
+    width: 100px;
+  }
+  .logo-holder{
+    background: #7c5dfa;
+  }
+  
+  .animate{
+    animation: slide linear 0.3s;
+  }
+  @keyframes slide {
+    from{
+      width:0;
+      transform:  translateX(-200px);
+    }
+    to{
+      width: 100%;
+      transition: all 500ms;
+    }
+  }
 </style>
