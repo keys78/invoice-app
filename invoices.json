@@ -1,0 +1,20 @@
+{
+	"invoices": [
+	  {
+		"firstName": "Goat",
+		"lastName": "Onyeyaforo",
+		"email": "rahzy24@gmail.com",
+		"phone": "08108243267",
+		"password": "mabutunwaa mama",
+		"id": 1
+	  },
+	  {
+		"firstName": "Man",
+		"lastName": "Onyeyaforo",
+		"email": "rahzy24@gmail.com",
+		"phone": "08108243267",
+		"password": "mabutunwaa mama",
+		"id": 2
+	  }
+	]
+  }

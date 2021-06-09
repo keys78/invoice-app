@@ -80,6 +80,25 @@
                            <AddItem />
                           
                 </form>
+               
+            </div>
+
+            <div class="flex justify-between mt-10 w-8/12 mx-auto">
+                <div class="">
+                    <button @click="closeModal" class="discard-button py-4 px-4 text-center rounded-2xl text-xs font-bold focus:outline-none text-white">Discard</button>
+                </div>
+
+                <div class="flex gap-4">
+                     <div class="">
+                        <button class="draft-button py-4 px-4 text-center rounded-2xl text-xs font-bold focus:outline-none bg-black text-white">Save as Draft</button>
+                    </div>
+
+                    <div class="">
+                        <button class="save-button py-4 px-4 text-center rounded-2xl text-xs font-bold focus:outline-none text-white">Send & Save</button>
+                    </div>
+
+                </div>
+
             </div>
 
         </div>
@@ -147,5 +166,32 @@ export default {
     color:#7c5dfa;
 }.form-holder{
     height:500px;
+}
+
+.save-button{
+     background:#7c5dfa;
+     transition: 0.3s linear all;
+}.save-button:hover{
+    opacity: 0.7;
+    transition: 0.3s linear all;
+
+}
+.draft-button{
+     background:#363b53;
+     transition: 0.3s linear all;
+}
+.draft-button:hover {
+     background:#000000;
+     transition: 0.3s linear all;
+}
+.discard-button{
+    background: #f1f4fd;
+    color:#7c5dfa;
+     transition: 0.3s linear all;
+}
+.discard-button:hover{
+    background: #ced7f7;
+    color:#7c5dfa;
+     transition: 0.3s linear all;
 }
 </style>

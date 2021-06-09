@@ -12,17 +12,28 @@
       </div>
     </div>
 
-      <div class="main w-6/12 h-screen mx-auto border border-current">
+      <div class="main spartan w-6/12 h-screen mx-auto pt-16 border border-current">
+        <!--top-->
+        <div class="flex justify-between items-center">
 
-        <div class="flex justify-between">
+          <div >
+            <h1 class="text-4xl font-bold pb-1 tracking-wide">Invoices</h1>
+            <p class="text-xs">There are Total of 0 Invoices</p>
+          </div>
 
-          <div class="text-3xl font-bold">Invoice</div>
+          <div class="w-6/12 flex justify-between">
 
-          <button @click="toggleModal" class="flex gap-5 rounded-2xl ">
-            <img src="./assets/images/icon-plus.svg" alt="plus-icon" />
-            <Button text="New Invoice" class=""/>
-          </button>
+              <div @click="statusToggle" class="flex gap-4 items-center cursor-pointer">
+                <p class="text-sm font-bold">Filter by status</p>
+                <img class="mx-auto" src="./assets/images/icon-arrow-down.svg" alt="sideArrow" />
+              </div>
 
+              <div @click="toggleModal" class="flex save-button gap-2 px-4 py-2 w-5/12 rounded-3xl items-center justify-center">
+                <h1 class="p-2 rounded-full bg-white"><img src="./assets/images/icon-plus.svg" alt="plus-icon" /></h1>
+                <Button text="New Invoice" class="border-none text-white text-xs font-bold"/>
+              </div>
+
+          </div>
         </div>
    
       </div>
@@ -49,6 +60,9 @@ import Button from './components/Button.vue'
     methods: {
       toggleModal() {
         this.showModal = !this.showModal
+      },
+      statusToggle(){
+        console.log('Yes')
       }
     }
   }
