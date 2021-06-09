@@ -9,6 +9,3 @@ new Vue({
   render: h => h(App)
 }).$mount('#app')
 
-const AddNew = {
-  template: '<p>Hello</p>'
-}
