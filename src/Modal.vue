@@ -1,6 +1,8 @@
 <template>
     <div class="backdrop" @click.self="closeModal">
-        <div class="modal w-6/12 bg-white spartan h-screen rounded-r-2xl">
+        
+        <div class="modal w-6/12 spartan h-screen rounded-r-2xl">
+            <h1>{{ mode }}</h1>
             <h1 class="py-10 w-9/12 pl-6 mx-auto text-2xl font-semibold">Create Invoice</h1>
 
                 <form @submit.prevent="saveInvoice" class="mx-4 ">
@@ -115,16 +117,18 @@ import AddItem from './components/AddItem.vue'
 
 
 export default {
-
+    props:['mode'],
     name: 'Modal',
     components:{
         AddItem,
     },
     data() {
         return {
+            // mode: 'dark',
             invoice: {
                 clientEmail: '',
                 id:'',
+                statusText:'Pending',
             }
         }
     },
@@ -234,4 +238,12 @@ export default {
     color:#7c5dfa;
      transition: 0.3s linear all;
 }
+.modal{
+    background: white;
+    color:black;
+}
+ .dark .modal{
+     background: #000;
+     color:blanchedalmond;
+ }
 </style>

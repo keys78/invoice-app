@@ -6,6 +6,7 @@
             <div class="flex gap-5">
                 <h1>#{{ invoice.id }}</h1>
                 <h1>{{ invoice.clientEmail }}</h1>
+                <div class="myStatus py-3 border px-6" :class="{'status': invoice.status}">{{ invoice.statusText }}</div>
                 
             </div>
             </router-link>
@@ -39,18 +40,11 @@
             
             })
     },
-    methods: {
-        markAsPaid(invoice) {
-            this.invoice.pending = !this.invoice.pending
-        }
-    }
+    
  }
 
 </script>
 
 <style>
-.status{
-    background: orange;
-    color:orange;
-}
+
 </style>

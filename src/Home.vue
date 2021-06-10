@@ -1,8 +1,8 @@
 <template>
-  <div class="bg-gray-200">
+  <div class="app" :class="mode" >
     
       <div v-if="showModal" class="animate">
-      <Modal @close="toggleModal"/>
+      <Modal :mode="mode" @close="toggleModal" />
       </div>
  
 
@@ -10,6 +10,7 @@
       <div class="logo-holder w-full py-10 rounded-r-2xl">
         <img class="mx-auto" src="./assets/images/logo.svg" alt="sidepanel" />
       </div>
+      <DarkModeButton @nightMode="toggleNight"/>
     </div>
 
       <div class="main spartan w-6/12 h-screen mx-auto pt-16 border border-current">
@@ -47,6 +48,7 @@
 <script >
 import Modal from './Modal.vue'
 import Button from './components/Button.vue'
+import DarkModeButton from './components/DarkModeButton.vue'
 import Invoice from './Invoice.vue'
 
   export default {
@@ -54,11 +56,13 @@ import Invoice from './Invoice.vue'
     components: {
       Modal,
       Button,
-      Invoice
+      Invoice,
+      DarkModeButton
     },
     data() {
       return {
         showModal: false,
+        mode: 'dark'
       }
     },
     methods: {
@@ -67,6 +71,16 @@ import Invoice from './Invoice.vue'
       },
       statusToggle(){
         console.log('Yes')
+      },
+    
+      toggleNight() {
+         console.log('yrshfj')
+        if(this.mode === 'dark') {
+          this.mode = 'light'
+          console.log("light")
+        } else {
+          this.mode = 'dark'
+        }
       }
     }
   }
@@ -97,5 +111,14 @@ import Invoice from './Invoice.vue'
       width: 100%;
       transition: all 500ms;
     }
+  }
+
+  .app{
+    background: rgb(255, 246, 246);
+    color:black
+  }
+  .dark{
+    background: #000;
+    color:white;
   }
 </style>
