@@ -3,8 +3,8 @@
         <div class="modal w-6/12 bg-white spartan h-screen rounded-r-2xl">
             <h1 class="py-10 w-9/12 pl-6 mx-auto text-2xl font-semibold">Create Invoice</h1>
 
-            <div class="form-holder w-9/12 pl-6 mx-auto overflow-y-scroll">
-                <form action="mx-4">
+                <form @submit.prevent="saveInvoice" class="mx-4 ">
+                 <div class="form-holder w-9/12 pl-6 mx-auto overflow-y-scroll">
                     <h2 class="text-sm font-bold mini-headers pb-6">Bill from</h2>
 
                     <label class="text-sm">Street Address</label>
@@ -32,7 +32,7 @@
 
                         <div class="py-4">
                             <label class="text-sm pt-4">Client's Email</label>
-                            <input type="text" class="input-group mb-4">
+                            <input v-model="invoice.clientEmail" type="text" class="input-group mb-4">
                         </div>
 
                         <label class="text-sm">Street Address</label>
@@ -78,28 +78,32 @@
                             <h1 class="text-gray-400 font-bold py-5 text-xl">items List</h1>
 
                            <AddItem />
-                          
+
+                            
+                 </div>      
+
+                    <div class="flex justify-between mt-10 w-8/12 mx-auto">
+                        <div class="">
+                            <button @click="closeModal" class="discard-button py-4 px-4 text-center rounded-2xl text-xs font-bold focus:outline-none text-white">Discard</button>
+                        </div>
+
+                        <div class="flex gap-4">
+                            <div class="">
+                                <button class="draft-button py-4 px-4 text-center rounded-2xl text-xs font-bold focus:outline-none bg-black text-white">Save as Draft</button>
+                            </div>
+
+                            <div class="">
+                                <button type="submit"  class="save-button py-4 px-4 text-center rounded-2xl text-xs font-bold focus:outline-none text-white">Send & Save</button>
+                            </div>
+                        </div>
+
+                    </div>
+
+
                 </form>
                
-            </div>
 
-            <div class="flex justify-between mt-10 w-8/12 mx-auto">
-                <div class="">
-                    <button @click="closeModal" class="discard-button py-4 px-4 text-center rounded-2xl text-xs font-bold focus:outline-none text-white">Discard</button>
-                </div>
-
-                <div class="flex gap-4">
-                     <div class="">
-                        <button class="draft-button py-4 px-4 text-center rounded-2xl text-xs font-bold focus:outline-none bg-black text-white">Save as Draft</button>
-                    </div>
-
-                    <div class="">
-                        <button class="save-button py-4 px-4 text-center rounded-2xl text-xs font-bold focus:outline-none text-white">Send & Save</button>
-                    </div>
-
-                </div>
-
-            </div>
+            
 
         </div>
 
@@ -116,14 +120,50 @@ export default {
     components:{
         AddItem,
     },
+    data() {
+        return {
+            invoice: {
+                clientEmail: '',
+                id:'',
+            }
+        }
+    },
+
 
     methods: {
         closeModal() {
             this.$emit('close')
         },
 
+        saveInvoice() {
+            const characters = 'ABCDEF123GHIJKLMN456OPQRSTUVWXYZ7890'
+            const uniqueId = (() => { let text = '';for (let i = 0; i < 6; i++) {text += characters.charAt(Math.floor(Math.random() * characters.length));   }
+            const myId = text ; this.invoice.id = myId})
+            return uniqueId(),
+ 
+            fetch('http://localhost:3000/invoices', {
+                method: 'POST',
+                headers: {'Accept': 'application/json, text/plain, */*','Content-Type': 'application/json'},
+                body: JSON.stringify(this.invoice)
+            })
+           .then(res => {return res.json();})
+            .then(data => {
+                console.log(data)
+                 
+            })
+       .catch(() => {
+        })
+
+        },
+
+               
+        
+
+     
         
     }
+
+    
 }
 </script>
 
