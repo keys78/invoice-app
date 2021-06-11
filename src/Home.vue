@@ -1,5 +1,5 @@
 <template>
-  <div class="app" :class="mode" >
+  <div class="app" :class="mode">
     
       <div v-if="showModal" class="animate">
       <Modal :mode="mode" @close="toggleModal" />
@@ -10,7 +10,7 @@
       <div class="logo-holder w-full py-10 rounded-r-2xl">
         <img class="mx-auto" src="./assets/images/logo.svg" alt="sidepanel" />
       </div>
-      <DarkModeButton @nightMode="toggleNight"/>
+      <DarkModeButton :mode="mode"  @nightMode="nightModeToggle"/>
     </div>
 
       <div class="main spartan w-6/12 h-screen mx-auto pt-16 border border-current">
@@ -22,19 +22,19 @@
             <p class="text-xs">There are Total of 0 Invoices</p>
           </div>
 
-          <div class="w-6/12 flex justify-between">
+          <!-- <div class="w-6/12 flex justify-between"> -->
 
-              <div @click="statusToggle" class="flex gap-4 items-center cursor-pointer">
+              <!-- <div @click="statusToggle" class="flex gap-4 items-center cursor-pointer">
                 <p class="text-sm font-bold">Filter by status</p>
                 <img class="mx-auto" src="./assets/images/icon-arrow-down.svg" alt="sideArrow" />
-              </div>
+              </div> -->
 
               <div @click="toggleModal" class="flex save-button gap-2 px-4 py-2 w-5/12 rounded-3xl items-center justify-center">
                 <h1 class="p-2 rounded-full bg-white"><img src="./assets/images/icon-plus.svg" alt="plus-icon" /></h1>
                 <Button text="New Invoice" class="border-none text-white text-xs font-bold"/>
               </div>
 
-          </div>
+          <!-- </div> -->
         </div>
 
             <Invoice />
@@ -62,25 +62,19 @@ import Invoice from './Invoice.vue'
     data() {
       return {
         showModal: false,
-        mode: 'dark'
+        mode: 'light'
       }
     },
     methods: {
       toggleModal() {
         this.showModal = !this.showModal
       },
-      statusToggle(){
-        console.log('Yes')
-      },
+      // statusToggle(){
+      //   console.log('Yes')
+      // },
     
-      toggleNight() {
-         console.log('yrshfj')
-        if(this.mode === 'dark') {
-          this.mode = 'light'
-          console.log("light")
-        } else {
-          this.mode = 'dark'
-        }
+     nightModeToggle() {
+       this.mode === 'dark' ? this.mode = 'light' : this.mode = 'dark'
       }
     }
   }
@@ -115,10 +109,12 @@ import Invoice from './Invoice.vue'
 
   .app{
     background: rgb(255, 246, 246);
-    color:black
+    color:black;
+    transition: background 0.5s ease-in-out;
   }
   .dark{
     background: #000;
     color:white;
+    transition: background 0.5s ease-in-out;
   }
 </style>

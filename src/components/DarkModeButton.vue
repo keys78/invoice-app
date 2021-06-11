@@ -1,7 +1,7 @@
 <template>
   <div class="p-10">
       <label class="toggle">
-          <img class="cursor-pointer" :src="(mode === 'dark') ?  Moon  : Sun " @click="toogleNightMode"/>
+          <img class="cursor-pointer" :src="(mode === 'dark') ?  Sun  : Moon " @click="$emit('nightMode')"/>
           <!-- <img :src="(mode === 'dark') ? '../assets/images/icon-moon.svg' : '../assets/images/icon-moon.sv'"/> -->
       </label>
   </div>
@@ -17,12 +17,6 @@ export default {
         return{
             Sun,
             Moon,
-        }
-    },
-    methods: {
-        toogleNightMode() {
-            this.$emit('nightMode')
-           
         }
     }
 

@@ -1,6 +1,8 @@
 <template>
-<div class="p-40">
-    
+<div class="invoiceDetails w-6/12 mx-auto">
+
+    <h1>{{ mode }}</h1>
+    <!-- <DarkModeButton :mode="mode" @nightMode="nightModeToggle"/> -->
     <button @click="deleteInvoice" class="draft-button text-white py-2 px-4 m-20">Delete</button>
     <button @click="editInvoice" class="draft-button text-white py-2 px-4 m-20">Edit</button>
     <router-link to="/"><button class="draft-button text-white py-2 px-4 mt-10">Back</button></router-link>
@@ -11,7 +13,7 @@
         <p>#{{id}}</p>
         <div class="flex gap-6 mt-4">
             <div class="myStatus py-3 border px-6" :class="{'status': invoice.status}">{{ invoice.statusText }}</div>
-            <button @click="markAsPaid(invoice)" class="draft-button">Mark as Paid</button>
+            <button v-if="showMarkBtn" @click="markAsPaid(invoice)" class="draft-button">Mark as Paid</button>
         </div>
 
         <form @submit.prevent="saveChanges">
@@ -28,13 +30,21 @@
 </template>
 
 <script>
+import DarkModeButton from './components/DarkModeButton.vue'
+
  export default {
-     props: ['id'],
+     props: ['id','mode'],
+
+    components: {
+        DarkModeButton
+    },
+
      data() {
          return {
              invoice: {
                clientEmail:'',
-             }
+             },
+            showMarkBtn: true
          }
      },
      mounted() {
@@ -75,6 +85,7 @@
 
         markAsPaid(invoice) {
             invoice.status = true
+            this.showMarkBtn = false
             this.invoice.statusText = "Paid"
           
               fetch('http://localhost:3000/invoices/' + this.id, {
@@ -86,6 +97,10 @@
                  
             })
         },
+
+    //     nightModeToggle() {
+    //    this.mode === 'dark' ? this.mode = 'light' : this.mode = 'dark'
+    //   },
 
         saveChanges() {
              fetch('http://localhost:3000/invoices/' + this.id, {
@@ -119,4 +134,12 @@
     background: rgb(178, 248, 207);
     color:rgb(0, 92, 5);
 }
+.invoiceDetails{
+    background: white;
+    color:black;
+}
+ .dark .invoiceDetails{
+     background: #000;
+     color:blanchedalmond;
+ }
 </style>

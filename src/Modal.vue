@@ -1,5 +1,5 @@
 <template>
-    <div class="backdrop" @click.self="closeModal">
+    <div class="backdrop" @click.self="$emit('close')">
         
         <div class="modal w-6/12 spartan h-screen rounded-r-2xl">
             <h1>{{ mode }}</h1>
@@ -86,7 +86,7 @@
 
                     <div class="flex justify-between mt-10 w-8/12 mx-auto">
                         <div class="">
-                            <button @click="closeModal" class="discard-button py-4 px-4 text-center rounded-2xl text-xs font-bold focus:outline-none text-white">Discard</button>
+                            <button @click.self="$emit('close')" class="discard-button py-4 px-4 text-center rounded-2xl text-xs font-bold focus:outline-none text-white">Discard</button>
                         </div>
 
                         <div class="flex gap-4">
@@ -124,7 +124,6 @@ export default {
     },
     data() {
         return {
-            // mode: 'dark',
             invoice: {
                 clientEmail: '',
                 id:'',
@@ -135,10 +134,6 @@ export default {
 
 
     methods: {
-        closeModal() {
-            this.$emit('close')
-        },
-
         saveInvoice() {
             const characters = 'ABCDEF123GHIJKLMN456OPQRSTUVWXYZ7890'
             const uniqueId = (() => { let text = '';for (let i = 0; i < 6; i++) {text += characters.charAt(Math.floor(Math.random() * characters.length));   }
@@ -241,9 +236,11 @@ export default {
 .modal{
     background: white;
     color:black;
+    transition: background 0.5s ease-in-out;
 }
  .dark .modal{
      background: #000;
      color:blanchedalmond;
+     transition: background 0.5s ease-in-out;
  }
 </style>
