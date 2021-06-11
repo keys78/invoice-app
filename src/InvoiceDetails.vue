@@ -1,6 +1,6 @@
 <template>
-<div class="invoiceDetails w-6/12 mx-auto">
-
+<div class="invoiceDetails mx-auto">
+  <div class="w-6/12 mx-auto">
     <h1>{{ mode }}</h1>
     <!-- <DarkModeButton :mode="mode" @nightMode="nightModeToggle"/> -->
     <button @click="deleteInvoice" class="draft-button text-white py-2 px-4 m-20">Delete</button>
@@ -25,18 +25,131 @@
     <div v-else>
         Loading....
     </div>
+  </div>
+
+    <div v-if="showModalEdit">
+    <div class="backdrop" @click.self="closeModalEdit">
+    <div class="fixed modal top-0 left-0 w-6/12 spartan h-screen rounded-r-2xl">
+            <h1>{{ mode }}</h1>
+            <h1 class="py-10 w-9/12 pl-6 mx-auto text-2xl font-semibold">Edit Invoice</h1>
+
+                <form @submit.prevent="saveInvoice" class="mx-4 ">
+                 <div class="form-holder w-9/12 pl-6 mx-auto overflow-y-scroll">
+                    <h2 class="text-sm font-bold mini-headers pb-6">Bill from</h2>
+
+                    <label class="text-sm">Street Address</label>
+                    <input type="text" class="input-group">
+
+                    <div class="flex justify-between gap-4 mt-5">
+                        <div>
+                            <label class="text-sm">City</label>
+                            <input type="text" class="input-group">
+                        </div>
+                        <div>
+                            <label class="text-sm">Postcode</label>
+                            <input type="text" class="input-group">
+                        </div>
+                        <div>
+                            <label class="text-sm">Country</label>
+                            <input type="text" class="input-group">
+                        </div>
+                    </div>
+                        <!--from-->
+                        <h2 class="mt-8 text-sm font-bold mini-headers pb-6">Bill from</h2>
+
+                        <label class="text-sm">Client's Name</label>
+                        <input type="text" class="input-group">
+
+                        <div class="py-4">
+                            <label class="text-sm pt-4">Client's Email</label>
+                            <input v-model="invoice.clientEmail" type="text" class="input-group mb-4">
+                        </div>
+
+                        <label class="text-sm">Street Address</label>
+                        <input type="text" class="input-group">
+
+                        <div class="flex justify-between gap-4 mt-5">
+                            <div>
+                                <label class="text-sm">City</label>
+                                <input type="text" class="input-group">
+                            </div>
+                            <div>
+                                <label class="text-sm">Postcode</label>
+                                <input type="text" class="input-group">
+                            </div>
+                            <div>
+                                <label class="text-sm">Country</label>
+                                <input type="text" class="input-group">
+                            </div>
+                    </div>
+
+                        <div class="flex justify-between gap-4 mt-5">
+                            <div>
+                                <label class="text-sm">Invoice Date</label>
+                                <input type="date" class="input-group">
+                            </div>
+                            <div>
+                                <label class="text-sm">Payment Terms</label>
+                                <select type="text" class="input-group">
+                                <option value="Net 1 Day">Net 1 Day</option>
+                                <option value="Net 7 Days">Net 7 Days</option>
+                                <option value="Net 21 Days">Net 21 Days</option>
+                                <option value="Net 30 Days">Net 30 Days</option>
+                                </select>
+                            </div>
+
+                    </div>
+
+                            <div class="py-6">
+                                <label class="text-sm">Description</label>
+                                <input type="text" class="input-group " placeholder="eg:crypto vendor services">
+                            </div>
+
+                            <h1 class="text-gray-400 font-bold py-5 text-xl">items List</h1>
+
+                           <AddItem />
+
+                            
+                 </div>      
+
+                    <div class="flex justify-between mt-10 w-8/12 mx-auto">
+                        <div>
+                            <button class="discard-button py-4 px-4 text-center rounded-2xl text-xs font-bold focus:outline-none text-white">Discard</button>
+                        </div>
+
+                        <div>
+                            <button type="submit"  class="save-button py-4 px-4 text-center rounded-2xl text-xs font-bold focus:outline-none text-white">Send & Save</button>
+                        </div>
+
+                    </div>
+
+
+                </form>
+               
+
+            
+
+        </div>
+    </div>
+  </div>
+
+
+
+
     
 </div>
 </template>
 
 <script>
 import DarkModeButton from './components/DarkModeButton.vue'
+import AddItem from './components/AddItem.vue'
 
  export default {
      props: ['id','mode'],
 
     components: {
-        DarkModeButton
+        DarkModeButton,
+        AddItem
     },
 
      data() {
@@ -44,7 +157,8 @@ import DarkModeButton from './components/DarkModeButton.vue'
              invoice: {
                clientEmail:'',
              },
-            showMarkBtn: true
+            showMarkBtn: true,
+            showModalEdit: false
          }
      },
      mounted() {
@@ -79,7 +193,10 @@ import DarkModeButton from './components/DarkModeButton.vue'
         },
 
     editInvoice() {
-        console.log('edit')
+       this.showModalEdit = !this.showModalEdit
+        },
+        closeModalEdit() {
+            this.showModalEdit = !this.showModalEdit 
         },
 
 

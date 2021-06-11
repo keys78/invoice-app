@@ -91,7 +91,7 @@
 
                         <div class="flex gap-4">
                             <div class="">
-                                <button class="draft-button py-4 px-4 text-center rounded-2xl text-xs font-bold focus:outline-none bg-black text-white">Save as Draft</button>
+                                <button @click="saveDraft" class="draft-button py-4 px-4 text-center rounded-2xl text-xs font-bold focus:outline-none bg-black text-white">Save as Draft</button>
                             </div>
 
                             <div class="">
@@ -128,6 +128,7 @@ export default {
                 clientEmail: '',
                 id:'',
                 statusText:'Pending',
+                draft: 'draft'
             }
         }
     },
@@ -149,6 +150,26 @@ export default {
             .then(data => {
                 console.log(data)
                  
+            })
+       .catch(() => {
+        })
+
+        },
+
+        saveDraft() {
+            const characters = 'ABCDEF123GHIJKLMN456OPQRSTUVWXYZ7890'
+            const uniqueId = (() => { let text = '';for (let i = 0; i < 6; i++) {text += characters.charAt(Math.floor(Math.random() * characters.length));   }
+            const myId = text ; this.invoice.id = myId})
+            return uniqueId(),
+ 
+            fetch('http://localhost:3000/invoices', {
+                method: 'POST',
+                headers: {'Accept': 'application/json, text/plain, */*','Content-Type': 'application/json'},
+                body: JSON.stringify(this.invoice.draft)
+            })
+           .then(res => {return res.json();})
+            .then(data => {
+                console.log(data)
             })
        .catch(() => {
         })
