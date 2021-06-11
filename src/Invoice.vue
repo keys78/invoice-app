@@ -9,39 +9,27 @@
             <p class="text-sm font-bold">Filter by status</p>
             <img class="mx-auto" src="./assets/images/icon-arrow-right.svg" alt="sideArrow" />
         </div>
-    </div>
+     </div>
 
-    <div v-if="statusBar" class="w-3/12 rounded pl-6 py-3 bg-white shadow spartan">
-        <!-- <div>
-            <input @click="paidInvoice" type="radio" name="status"/>
+    <div v-if="statusBar" class="w-3/12 rounded pl-6 pt-3 bg-white shadow spartan">
+        <div>
+            <input  type="checkbox" name="status" v-model="paid"/>
             <label class="font-bold text-xs pl-3" for="Paid">Paid</label>
-        </div> -->
-        <button v-on:click="userFilterKey = 'all'" :class="{ active: userFilterKey == 'all' }">paid</button>
-        <!-- <div class="py-2">
-            <input type="radio" name="status"/>
+        </div>
+        <div class="py-2">
+            <input type="checkbox" name="status" v-model="unpaid"/>
             <label class="font-bold text-xs pl-3" for="Pending">Pending</label>
-        </div> -->
-         <button class="pl-5" v-on:click="userFilterKey = 'nearby'" :class="{ active: userFilterKey == 'nearby' }">pending</button>
-        <!-- <div>
-            <input type="radio" name="status"/>
+        </div>
+        <!--<div>
+            <input type="checkbox" name="status"/>
             <label class="font-bold text-xs pl-3" for="Draft">Draft</label>
         </div> -->
     </div>
 
-     <div v-for="invoice in paidInvoice" :key="invoice.id" class="invoice">
-            <router-link :to="{name: 'InvoiceDetails', params: { id: invoice.id }}">
-            <div class="flex gap-5">
-                <h1>#{{ invoice.id }}</h1>
-                <h1>{{ invoice.clientEmail }}</h1>
-                <div class="myStatus py-3 border px-6" :class="{'status': invoice.status}">{{ invoice.statusText }}</div>       
-            </div>
-            </router-link>
-        </div>
-
 
 
     <div v-if="invoices.length">
-        <div v-for="invoice in invoices" :key="invoice.id" class="invoice">
+        <div v-for="invoice in filteredInvoices" :key="invoice.id" class="invoice">
             <router-link :to="{name: 'InvoiceDetails', params: { id: invoice.id }}">
             <div class="flex gap-5">
                 <h1>#{{ invoice.id }}</h1>
@@ -66,7 +54,9 @@
      data() {
          return {
              invoices: [],
-             statusBar: false
+             statusBar: false,
+            paid: false,
+            unpaid: false
          }
      },
       mounted() {
@@ -84,13 +74,20 @@
         statusToggle(){
              this.statusBar = !this.statusBar
       },
-       
     },
     computed: {
-    //    paidInvoice() {
-    //         console.log('checking')
-    //         return this.invoices.filter((invoice) => invoice.status)
-    //     }
+       filteredInvoices() {
+           if(this.paid) {
+            //    this.unpaid = false
+               return this.invoices.filter((invoice) => invoice.status)
+           } 
+           if(this.unpaid) {
+                // this.paid = false
+                return this.invoices.filter((invoice) => !invoice.status)
+           }
+           else
+           return this.invoices
+        }
     }
     
  }

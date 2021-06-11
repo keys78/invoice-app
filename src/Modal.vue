@@ -239,7 +239,7 @@ export default {
     transition: background 0.5s ease-in-out;
 }
  .dark .modal{
-     background: #000;
+     background:#00003e;
      color:blanchedalmond;
      transition: background 0.5s ease-in-out;
  }
