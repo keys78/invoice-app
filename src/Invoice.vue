@@ -20,10 +20,10 @@
             <input type="checkbox" name="status" v-model="unpaid"/>
             <label class="font-bold text-xs pl-3" for="Pending">Pending</label>
         </div>
-        <!--<div>
+        <div>
             <input type="checkbox" name="status"/>
             <label class="font-bold text-xs pl-3" for="Draft">Draft</label>
-        </div> -->
+        </div>
     </div>
 
 
@@ -78,11 +78,9 @@
     computed: {
        filteredInvoices() {
            if(this.paid) {
-            //    this.unpaid = false
                return this.invoices.filter((invoice) => invoice.status)
            } 
            if(this.unpaid) {
-                // this.paid = false
                 return this.invoices.filter((invoice) => !invoice.status)
            }
            else
