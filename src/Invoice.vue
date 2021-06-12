@@ -31,10 +31,12 @@
     <div v-if="invoices.length">
         <div v-for="invoice in filteredInvoices" :key="invoice.id" class="invoice">
             <router-link :to="{name: 'InvoiceDetails', params: { id: invoice.id }}">
-            <div class="flex gap-5">
-                <h1>#{{ invoice.id }}</h1>
+            <div class="flex items-center gap-5">
+                <h1><span class="text-sm font-bold">#</span><span class="font-semibold text-black">{{ invoice.id }}</span></h1>
                 <h1>{{ invoice.clientEmail }}</h1>
-                <div class="myStatus py-3 border px-6" :class="{'status': invoice.status}">{{ invoice.statusText }}</div>
+                <h1>Due {{ invoice.invoiceDate }}</h1>
+                <h1>{{invoice.total}}</h1>
+                <div class="myStatus rounded py-3 border px-6" :class="{'status': invoice.status}"><i class="far fa-circle"></i> {{ invoice.statusText }}</div>
                 
             </div>
             </router-link>
@@ -93,5 +95,12 @@
 </script>
 
 <style>
-
+/* .invoice{
+    background: white;
+    margin:10px 0px;
+    padding: 10px 20px;
+    font-size: 13px;
+    font-weight: 400;
+    color:#666ea0;
+} */
 </style>

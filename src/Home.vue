@@ -13,7 +13,7 @@
       <DarkModeButton :mode="mode"  @nightMode="nightModeToggle"/>
     </div>
 
-      <div class="main spartan w-6/12 h-screen mx-auto pt-16 border border-current">
+      <div class="main spartan w-6/12 h-screen mx-auto pt-16">
         <!--top-->
         <div class="flex justify-between items-center">
 
@@ -108,7 +108,7 @@ import Invoice from './Invoice.vue'
   }
 
   .app{
-    background: rgb(255, 246, 246);
+    background:#f8f8fb;
     color:black;
     transition: background 0.5s ease-in-out;
   }

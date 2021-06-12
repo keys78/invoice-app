@@ -1,7 +1,6 @@
 <template>
-<div class="invoiceDetails mx-auto">
-  <div class="w-6/12 mx-auto">
-   
+<div class="app">
+  <div class="w-6/12 h-screen h-auto mx-auto">
     <button @click="deleteInvoice" class="draft-button text-white py-2 px-4 m-20">Delete</button>
     <button @click="editInvoice" class="draft-button text-white py-2 px-4 m-20">Edit</button>
     <router-link to="/"><button class="draft-button text-white py-2 px-4 mt-10">Back</button></router-link>
@@ -28,11 +27,7 @@
                 <div class="logo-holder w-full py-10 rounded-r-2xl">
                     <img class="mx-auto" src="./assets/images/logo.svg" alt="sidepanel" />
                 </div>
-            <div class="p-10">
-                <label class="toggle">
-                    <img class="cursor-pointer" :src="(mode === 'dark') ?  Sun  : Moon " @click="$emit('nightMode')"/>
-                </label>
-            </div>
+             <DarkModeButton :mode="mode"  @nightMode="nightModeToggle"/>
         </div>
 
 
@@ -42,7 +37,7 @@
 
     <div v-if="showModalEdit" class="animate">
     <div class="backdrop" @click.self="closeModalEdit">
-    <div class="absolute modal top-0 left-0 w-6/12 spartan h-screen rounded-r-2xl">
+    <div class="absolute modalEdit top-0 left-0 w-6/12 spartan h-screen rounded-r-2xl">
 
           
             <h1 class="py-10 w-9/12 pl-6 mx-auto text-2xl font-semibold">Edit Invoice</h1>
@@ -121,7 +116,7 @@
 
                             <h1 class="text-gray-400 font-bold py-5 text-xl">items List</h1>
 
-                           <AddItem />
+                           <AddItem >/>
 
                             
                  </div>      
@@ -158,20 +153,23 @@ import DarkModeButton from './components/DarkModeButton.vue'
 import AddItem from './components/AddItem.vue'
 
  export default {
-     props: ['id','mode'],
+     props: ['id'],
 
     components: {
         DarkModeButton,
-        AddItem
+        AddItem,
     },
 
      data() {
          return {
              invoice: {
                clientEmail:'',
+
              },
             showMarkBtn: true,
-            showModalEdit: false
+            showModalEdit: false,
+            mode: "light",
+           
          }
      },
      mounted() {
@@ -200,13 +198,13 @@ import AddItem from './components/AddItem.vue'
                 // console.log(data)
                  this.$router.push({ name: 'Home' })
             })
-       .catch(() => {
-        })
+            .catch(() => {
+                })
 
         },
 
-    editInvoice() {
-       this.showModalEdit = !this.showModalEdit
+        editInvoice() {
+        this.showModalEdit = !this.showModalEdit
         },
         closeModalEdit() {
             this.showModalEdit = !this.showModalEdit 
@@ -231,9 +229,9 @@ import AddItem from './components/AddItem.vue'
             })
         },
 
-        // nightMode() {
-        //  this.mode === 'dark' ? this.mode = 'light' : this.mode = 'dark'
-        //     },
+        nightModeToggle() {
+        this.mode === 'dark' ? this.mode = 'light' : this.mode = 'dark'
+        },
 
         saveChanges() {
              fetch('http://localhost:3000/invoices/' + this.id, {
@@ -249,30 +247,28 @@ import AddItem from './components/AddItem.vue'
             })
        .catch(() => {
         })
-        }
-
+        },
     }
-
 
 
  }
 
 </script>
 <style>
-.myStatus{
+ .myStatus{
      background: rgb(250, 229, 191);
     color:rgb(243, 130, 0);
 }
-.myStatus.status{
+ .myStatus.status{
     background: rgb(178, 248, 207);
     color:rgb(0, 92, 5);
 }
-.invoiceDetails{
-    background: white;
-    color:black;
-}
- .dark .invoiceDetails{
+
+
+ .modalEdit{
+     background: rgb(187, 238, 164);
+ }
+ .dark .modalEdit{
      background: #000;
-     color:blanchedalmond;
  }
 </style>
