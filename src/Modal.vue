@@ -10,27 +10,27 @@
                     <h2 class="text-sm font-bold mini-headers pb-6">Bill from</h2>
 
                     <label class="text-sm">Street Address</label>
-                    <input type="text" class="input-group">
+                    <input v-model="invoice.streetAddress" type="text" class="input-group">
 
                     <div class="flex justify-between gap-4 mt-5">
                         <div>
                             <label class="text-sm">City</label>
-                            <input type="text" class="input-group">
+                            <input v-model="invoice.city" type="text" class="input-group">
                         </div>
                         <div>
                             <label class="text-sm">Postcode</label>
-                            <input type="text" class="input-group">
+                            <input v-model="invoice.postCode" type="text" class="input-group">
                         </div>
                         <div>
                             <label class="text-sm">Country</label>
-                            <input type="text" class="input-group">
+                            <input v-model="invoice.country" type="text" class="input-group">
                         </div>
                     </div>
                         <!--from-->
                         <h2 class="mt-8 text-sm font-bold mini-headers pb-6">Bill from</h2>
 
                         <label class="text-sm">Client's Name</label>
-                        <input type="text" class="input-group">
+                        <input v-model="invoice.clientName" type="text" class="input-group">
 
                         <div class="py-4">
                             <label class="text-sm pt-4">Client's Email</label>
@@ -38,31 +38,31 @@
                         </div>
 
                         <label class="text-sm">Street Address</label>
-                        <input type="text" class="input-group">
+                        <input v-model="invoice.clientStreetAddress" type="text" class="input-group">
 
                         <div class="flex justify-between gap-4 mt-5">
                             <div>
                                 <label class="text-sm">City</label>
-                                <input type="text" class="input-group">
+                                <input v-model="invoice.clientCity" type="text" class="input-group">
                             </div>
                             <div>
                                 <label class="text-sm">Postcode</label>
-                                <input type="text" class="input-group">
+                                <input v-model="invoice.clientPostCode" type="text" class="input-group">
                             </div>
                             <div>
                                 <label class="text-sm">Country</label>
-                                <input type="text" class="input-group">
+                                <input v-model="invoice.clientCountry" type="text" class="input-group">
                             </div>
                     </div>
 
                         <div class="flex justify-between gap-4 mt-5">
                             <div>
                                 <label class="text-sm">Invoice Date</label>
-                                <input type="date" class="input-group">
+                                <input v-model="invoice.invoiceDate" type="date" class="input-group">
                             </div>
                             <div>
                                 <label class="text-sm">Payment Terms</label>
-                                <select type="text" class="input-group">
+                                <select v-model="invoice.paymentTerms" type="text" class="input-group">
                                 <option value="Net 1 Day">Net 1 Day</option>
                                 <option value="Net 7 Days">Net 7 Days</option>
                                 <option value="Net 21 Days">Net 21 Days</option>
@@ -74,7 +74,7 @@
 
                             <div class="py-6">
                                 <label class="text-sm">Description</label>
-                                <input type="text" class="input-group " placeholder="eg:crypto vendor services">
+                                <input v-model="invoice.description" type="text" class="input-group " placeholder="eg:crypto vendor services">
                             </div>
 
                             <h1 class="text-gray-400 font-bold py-5 text-xl">items List</h1>
@@ -90,11 +90,11 @@
                         </div>
 
                         <div class="flex gap-4">
-                            <div class="">
-                                <button @click="saveDraft" class="draft-button py-4 px-4 text-center rounded-2xl text-xs font-bold focus:outline-none bg-black text-white">Save as Draft</button>
+                            <div>
+                                <button class="draft-button py-4 px-4 text-center rounded-2xl text-xs font-bold focus:outline-none bg-black text-white">Save as Draft</button>
                             </div>
 
-                            <div class="">
+                            <div>
                                 <button type="submit"  class="save-button py-4 px-4 text-center rounded-2xl text-xs font-bold focus:outline-none text-white">Send & Save</button>
                             </div>
                         </div>
@@ -125,8 +125,19 @@ export default {
     data() {
         return {
             invoice: {
-                clientEmail: '',
                 id:'',
+                streetAddress:'',
+                city: '',
+                postCode: '',
+                country:'',
+                clientName:'',
+                clientEmail: '',
+                clientStreetAddress:'',
+                clientCity:'',
+                clientCountry:'',
+                clientPostCode:'',
+                invoiceDate:'',
+                description:'',
                 statusText:'Pending',
                 draft: 'draft'
             }
@@ -156,31 +167,7 @@ export default {
 
         },
 
-        saveDraft() {
-            const characters = 'ABCDEF123GHIJKLMN456OPQRSTUVWXYZ7890'
-            const uniqueId = (() => { let text = '';for (let i = 0; i < 6; i++) {text += characters.charAt(Math.floor(Math.random() * characters.length));   }
-            const myId = text ; this.invoice.id = myId})
-            return uniqueId(),
- 
-            fetch('http://localhost:3000/invoices', {
-                method: 'POST',
-                headers: {'Accept': 'application/json, text/plain, */*','Content-Type': 'application/json'},
-                body: JSON.stringify(this.invoice.draft)
-            })
-           .then(res => {return res.json();})
-            .then(data => {
-                console.log(data)
-            })
-       .catch(() => {
-        })
-
-        },
-
-               
-        
-
-     
-        
+   
     }
 
     
