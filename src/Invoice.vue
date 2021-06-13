@@ -39,6 +39,9 @@
                 <h1 class="col-span-2">Due{{invoice.invoiceDate}}</h1>
                 <h1 class="col-span-3">{{ invoice.clientName }}</h1>
                 <h1 class="col-span-2 font-bold">&#163;{{ invoice.total }}</h1>
+                 <!-- <div v-for="(addItems, index) in invoice.addItems" :key="index">
+                    <p class="text-4xl text-black">&#163;{{ addItems.subTotal = addItems.quantity*addItems.price }}</p>
+                </div> -->
                 <div class="relative flex col-span-2">
                     <div class="myStatus w-28 h-9 text-center border-none rounded py-3 opacity-50 border px-3 " :class="{'status': invoice.status}">
                     </div>

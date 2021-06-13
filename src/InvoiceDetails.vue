@@ -86,14 +86,14 @@
                     <p class="billTops col-span-3">{{ addItems.itemname }}</p>
                     <p class="billTops col-span-2">{{ addItems.quantity }}</p>
                     <p class="billTops col-span-2">{{ addItems.price }}</p>
-                    <p class="col-span-1">&#163;{{ invoice.total }}</p>
+                    <p class="col-span-1">&#163;{{ addItems.subTotal = addItems.quantity*addItems.price }}</p>
                 </div>
                 </div>
 
                 <div style="background:#1E2139;" class="rounded-b-2xl">
                     <div class="p-8 flex justify-between items-center ">
                         <p class="text-lg text-gray-100">Amount Due</p>
-                        <p class="text-3xl font-bold text-white">&#163;{{ invoice.total }}</p>
+                        <p class="text-3xl font-bold text-white">&#163;{{ invoice.total = addItems.subTotal }}</p>
                     </div>
                 </div>
             </div>
