@@ -142,11 +142,12 @@ export default {
                 draft: 'draft',
                 showMarkBtn: true,
                  addItems:[
-            {
-                itemname: '',
-                quantity:'',
-                price:''
-            }
+                    {
+                        itemname: '',
+                        quantity:'',
+                        price:''
+                        
+                    }
             ],
             },
              

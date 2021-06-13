@@ -1,5 +1,5 @@
 <template>
-<div class="app">
+<div class="apple h-full">
      <div class="sidebar fixed left-0 top-0 px rounded-r-2xl h-screen" style="z-index:9;">
                 <div class="logo-holder w-full py-10 rounded-r-2xl">
                     <img class="mx-auto" src="./assets/images/logo.svg" alt="sidepanel" />
@@ -8,7 +8,7 @@
      </div>
 
 
-  <div class="w-5/12 h-screen mx-auto">
+  <div class="w-5/12 mx-auto">
         <button class="py-3 mt-12 rounded-2xl px-6"><router-link class="flex items-center gap-4" to="/">
             <img class="mx-auto" src="./assets/images/icon-arrow-left.svg" alt="sideArrow" />
             <p class="text-black">Go Back</p>
@@ -82,10 +82,10 @@
                     <p class="billTops col-span-1">Total</p>
                 </div>
 
-                <div class="grid grid-cols-8 w-full py-4">
-                    <p class="billTops col-span-3">Item Name</p>
-                    <p class="billTops col-span-2">QTY.</p>
-                    <p class="billTops col-span-2">Price</p>
+                <div v-for="(addItems, index) in invoice.addItems" :key="index" class="grid grid-cols-8 w-full py-4">
+                    <p class="billTops col-span-3">{{ addItems.itemname }}</p>
+                    <p class="billTops col-span-2">{{ addItems.quantity }}</p>
+                    <p class="billTops col-span-2">{{ addItems.price }}</p>
                     <p class="col-span-1">&#163;{{ invoice.total }}</p>
                 </div>
                 </div>
@@ -243,7 +243,7 @@ import AddItem from './components/AddItem.vue'
      data() {
          return {
              invoice: {
-               addItems: [{}]
+            
              },
             showModalEdit: false,
             mode: "light",
@@ -320,7 +320,7 @@ import AddItem from './components/AddItem.vue'
         })
         }
 
-    }
+    },
 
 
 

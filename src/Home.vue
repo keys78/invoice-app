@@ -1,5 +1,5 @@
 <template>
-  <div class="app" :class="mode">
+  <div class="apple" :class="mode">
     
       <div v-if="showModal" class="animate">
       <Modal :mode="mode" @close="toggleModal" />
@@ -13,7 +13,7 @@
       <DarkModeButton :mode="mode"  @nightMode="nightModeToggle"/>
     </div>
 
-      <div class="main spartan xl:w-6/12 w-8/12 h-screen mx-auto pt-16">
+      <div class="main spartan xl:w-6/12 w-8/12 mx-auto pt-16">
         <!--top-->
         <div class="flex justify-between items-center">
 
@@ -107,8 +107,10 @@ import Invoice from './Invoice.vue'
     }
   }
 
-  .app{
-    background:rgb(247, 247, 250);;
+  .apple{
+    height: 100%;
+    background:red;
+    /* background:rgb(247, 247, 250);; */
     transition: background 0.5s ease-in-out;
   }
   .dark{
