@@ -11,7 +11,7 @@
         </div>
      </div>
 
-    <div v-if="statusBar" class="relative">
+    <div v-if="statusBar" class="relative statusDrop">
     <div class="absolute w-3/12 rounded pl-6 pt-3 bg-white shadow spartan">
         <div>
             <input  type="checkbox" name="status" v-model="paid"/>
@@ -135,5 +135,11 @@
 }
 .id-style{
     font-weight: 700;
+}
+.statusDrop{
+    background: #fff;
+}
+.dark .statusDrop {
+    background: #000;
 }
 </style>

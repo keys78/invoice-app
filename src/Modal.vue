@@ -139,7 +139,8 @@ export default {
                 invoiceDate:'',
                 description:'',
                 statusText:'Pending',
-                draft: 'draft'
+                draft: 'draft',
+                showMarkBtn: true
             }
         }
     },

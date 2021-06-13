@@ -29,7 +29,7 @@
                 <img class="mx-auto" src="./assets/images/icon-arrow-down.svg" alt="sideArrow" />
               </div> -->
 
-              <div @click="toggleModal" class="flex save-button gap-2 px-4 py-2 w-5/12 rounded-3xl items-center justify-center">
+              <div @click="toggleModal" class="flex save-button gap-2 px-1 py-2 w-2/12 rounded-3xl items-center justify-center">
                 <h1 class="p-2 rounded-full bg-white"><img src="./assets/images/icon-plus.svg" alt="plus-icon" /></h1>
                 <Button text="New Invoice" class="border-none text-white text-xs font-bold"/>
               </div>
@@ -93,7 +93,7 @@ import Invoice from './Invoice.vue'
     background: #7c5dfa;
   }
   
-  .animate {
+  .animate{
     animation: slide linear 0.3s;
   }
   @keyframes slide {
@@ -102,7 +102,7 @@ import Invoice from './Invoice.vue'
       transform:  translateX(-200px);
     }
     to{
-      width: 100%;
+      width: 50%;
       transition: all 500ms;
     }
   }

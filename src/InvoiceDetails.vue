@@ -8,8 +8,8 @@
      </div>
 
 
-  <div class="w-5/12 h-screen h-auto mx-auto">
-        <button class="py-3 rounded-2xl px-6"><router-link class="flex items-center gap-4" to="/">
+  <div class="w-5/12 h-screen mx-auto">
+        <button class="py-3 mt-12 rounded-2xl px-6"><router-link class="flex items-center gap-4" to="/">
             <img class="mx-auto" src="./assets/images/icon-arrow-left.svg" alt="sideArrow" />
             <p class="text-black">Go Back</p>
         </router-link></button>
@@ -29,7 +29,7 @@
             <div>
                 <button @click="editInvoice" class="discard-button focus:outline-none rounded-2xl text-white py-3 px-6">Edit</button>
                 <button @click="deleteInvoice" class="delete-button focus:outline-none mx-6 rounded-2xl text-white py-3 px-6">Delete</button>
-                <button v-if="showMarkBtn" @click="markAsPaid(invoice)" class="save-button focus:outline-none rounded-2xl text-white py-3 px-6">Mark as Paid</button>
+                <button v-if="invoice.showMarkBtn" @click="markAsPaid(invoice)" class="save-button focus:outline-none rounded-2xl text-white py-3 px-6">Mark as Paid</button>
             </div>
         </div>
 
@@ -115,9 +115,9 @@
 
 
 
-    <div v-if="showModalEdit" class="animate">
+    <div v-if="showModalEdit">
     <div class="backdrop" @click.self="closeModalEdit">
-    <div class="absolute modalEdit top-0 left-0 w-6/12 spartan h-screen rounded-r-2xl">
+    <div class="absolute modalEdit top-0 left-0 w-6/12 animative spartan h-screen rounded-r-2xl">
 
           
             <h1 class="py-10 w-9/12 pl-6 mx-auto text-2xl font-semibold">Edit #{{ id }}</h1>
@@ -243,9 +243,8 @@ import AddItem from './components/AddItem.vue'
      data() {
          return {
              invoice: {
-               clientEmail:'',
+               
              },
-            showMarkBtn: true,
             showModalEdit: false,
             mode: "light",
          }
@@ -294,17 +293,11 @@ import AddItem from './components/AddItem.vue'
 
         markAsPaid(invoice) {
             invoice.status = true
-            this.showMarkBtn = false
+            this.invoice.showMarkBtn = false
             this.invoice.statusText = "Paid"
           
               fetch('http://localhost:3000/invoices/' + this.id, {
-                method: 'PATCH',headers: {'Accept': 'application/json, text/plain, */*','Content-Type': 'application/json'},body: JSON.stringify(this.invoice)})
-            .then(res => {return res.json();}).then(data => {
-                this.invoice.status = true
-                this.invoice.statusText = "Paid"
-               console.log(data)
-                 
-            })
+                method: 'PATCH',headers: {'Accept': 'application/json, text/plain, */*','Content-Type': 'application/json'},body: JSON.stringify(this.invoice)}).then(res => {return res.json();}).then(data => {})
         },
 
         nightModeToggle() {
@@ -382,4 +375,18 @@ import AddItem from './components/AddItem.vue'
 .openColor{
     color: #888EB0;
 }
+  .animative {
+    animation: slide linear 0.3s;
+  }
+  @keyframes slide {
+    from{
+      width:0;
+      transform:  translateX(-200px);
+    }
+    to{
+      width: 50%;
+      transition: all 500ms;
+    }
+  }
+
 </style>
