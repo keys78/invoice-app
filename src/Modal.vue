@@ -79,7 +79,7 @@
 
                             <h1 class="text-gray-400 font-bold py-5 text-xl">items List</h1>
 
-                           <AddItem />
+                           <AddItem :addItems="invoice.addItems"/>
 
                             
                  </div>      
@@ -140,8 +140,16 @@ export default {
                 description:'',
                 statusText:'Pending',
                 draft: 'draft',
-                showMarkBtn: true
+                showMarkBtn: true,
+                 addItems:[
+            {
+                itemname: '',
+                quantity:'',
+                price:''
             }
+            ],
+            },
+             
         }
     },
 

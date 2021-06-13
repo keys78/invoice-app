@@ -196,7 +196,7 @@
 
                             <h1 class="text-gray-400 font-bold py-5 text-xl">items List</h1>
 
-                           <AddItem />
+                           <AddItem :addItems="invoice.addItems"/>
 
                             
                  </div>      
@@ -243,7 +243,7 @@ import AddItem from './components/AddItem.vue'
      data() {
          return {
              invoice: {
-               
+               addItems: [{}]
              },
             showModalEdit: false,
             mode: "light",

@@ -31,6 +31,7 @@
 
 
     <div v-if="invoices.length">
+        <span>{{ invoices.length}}</span>
         <div v-for="invoice in filteredInvoices" :key="invoice.id" class="invoice">
             <router-link :to="{name: 'InvoiceDetails', params: { id: invoice.id }}">
             <div class="grid grid-cols-12 items-center">
@@ -107,7 +108,7 @@
 .invoice{
     background: white;
     margin:10px 0px;
-    padding: 25px 0px;
+    padding: 17px 0px;
     padding-right:10px;
     padding-left:25px;
     font-size: 13px;
@@ -124,7 +125,12 @@
 .dark .invoice{
     background:#1E2139;
     color:#DFE3FA;
+    transition: 0.2s linear;
     transition: background 0.5s ease-in-out;
+}
+.dark .invoice:hover{
+   margin-left:-20px;
+   transition: linear 0.2s;
 }
 
 .myStatu{
