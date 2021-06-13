@@ -11,7 +11,8 @@
         </div>
      </div>
 
-    <div v-if="statusBar" class="w-3/12 rounded pl-6 pt-3 bg-white shadow spartan">
+    <div v-if="statusBar" class="relative">
+    <div class="absolute w-3/12 rounded pl-6 pt-3 bg-white shadow spartan">
         <div>
             <input  type="checkbox" name="status" v-model="paid"/>
             <label class="font-bold text-xs pl-3" for="Paid">Paid</label>
@@ -25,19 +26,27 @@
             <label class="font-bold text-xs pl-3" for="Draft">Draft</label>
         </div>
     </div>
+    </div>
 
 
 
     <div v-if="invoices.length">
         <div v-for="invoice in filteredInvoices" :key="invoice.id" class="invoice">
             <router-link :to="{name: 'InvoiceDetails', params: { id: invoice.id }}">
-            <div class="flex items-center gap-5">
-                <h1><span class="text-sm font-bold">#</span><span class="font-semibold text-black">{{ invoice.id }}</span></h1>
-                <h1>{{ invoice.clientEmail }}</h1>
-                <h1>Due {{ invoice.invoiceDate }}</h1>
-                <h1>{{invoice.total}}</h1>
-                <div class="myStatus rounded py-3 border px-6" :class="{'status': invoice.status}"><i class="far fa-circle"></i> {{ invoice.statusText }}</div>
-                
+            <div class="grid grid-cols-12 items-center">
+                <h1 class="col-span-2"><span class="text-sm font-bold">#</span><span class="id-style">{{ invoice.id }}</span></h1>
+                <h1 class="col-span-2">Due{{invoice.invoiceDate}}</h1>
+                <h1 class="col-span-3">{{ invoice.clientName }}</h1>
+                <h1 class="col-span-2 font-bold">&#163;{{ invoice.total }}</h1>
+                <div class="relative flex col-span-2">
+                    <div class="myStatus w-28 h-9 text-center border-none rounded py-3 opacity-50 border px-3 " :class="{'status': invoice.status}">
+                    </div>
+                    <div class="absolute top-2 left-5 flex gap-1 items-center">
+                        <p class="myStatus rounded-full w-2 h-2" :class="{'status': invoice.status}"></p>
+                        <h1 class="font-bold myStatu" :class="{'statu': invoice.status}">{{ invoice.statusText }}</h1>
+                    </div>
+                </div>
+                <img class="col-span-1" src="./assets/images/icon-arrow-right.svg" alt="sideArrow" />
             </div>
             </router-link>
         </div>
@@ -95,12 +104,36 @@
 </script>
 
 <style>
-/* .invoice{
+.invoice{
     background: white;
     margin:10px 0px;
-    padding: 10px 20px;
+    padding: 25px 0px;
+    padding-right:10px;
+    padding-left:25px;
     font-size: 13px;
     font-weight: 400;
     color:#666ea0;
-} */
+    border-radius: 5px;
+    transition: background 0.5s ease-in-out;
+    transition: 0.2s linear;
+}
+.invoice:hover{
+   margin-left:-20px;
+   transition: linear 0.2s;
+}
+.dark .invoice{
+    background:#1E2139;
+    color:#DFE3FA;
+    transition: background 0.5s ease-in-out;
+}
+
+.myStatu{
+    color:rgb(255, 153, 0);
+}
+.statu{
+    color:rgb(20, 184, 20);
+}
+.id-style{
+    font-weight: 700;
+}
 </style>

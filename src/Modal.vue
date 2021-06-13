@@ -139,7 +139,7 @@ export default {
                 invoiceDate:'',
                 description:'',
                 statusText:'Pending',
-                draft: 'draft',
+                draft: 'draft'
             }
         }
     },
@@ -239,6 +239,16 @@ export default {
 .discard-button:hover{
     background: #ced7f7;
     color:#7c5dfa;
+     transition: 0.3s linear all;
+}
+.delete-button{
+    background: rgb(235, 73, 73);
+    color:#f5f7ff;
+     transition: 0.3s linear all;
+}
+.delete-button:hover{
+    background: #f10e0e;
+    color:#f1f4ff;
      transition: 0.3s linear all;
 }
 .modal{

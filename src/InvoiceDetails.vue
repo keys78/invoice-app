@@ -1,34 +1,114 @@
 <template>
 <div class="app">
-  <div class="w-6/12 h-screen h-auto mx-auto">
-    <button @click="deleteInvoice" class="draft-button text-white py-2 px-4 m-20">Delete</button>
-    <button @click="editInvoice" class="draft-button text-white py-2 px-4 m-20">Edit</button>
-    <router-link to="/"><button class="draft-button text-white py-2 px-4 mt-10">Back</button></router-link>
-
-    <div v-if="invoice">
-
-        <h1>{{invoice.clientEmail}}</h1>
-        <p>#{{id}}</p>
-        <div class="flex gap-6 mt-4">
-            <div class="myStatus py-3 border px-6" :class="{'status': invoice.status}">{{ invoice.statusText }}</div>
-            <button v-if="showMarkBtn" @click="markAsPaid(invoice)" class="draft-button">Mark as Paid</button>
-        </div>
-
-    </div>
-
-    <div v-else>
-        Loading....
-    </div>
-  </div>
-
-
-
-      <div class="sidebar fixed left-0 top-0 px rounded-r-2xl h-screen" style="z-index:9;">
+     <div class="sidebar fixed left-0 top-0 px rounded-r-2xl h-screen" style="z-index:9;">
                 <div class="logo-holder w-full py-10 rounded-r-2xl">
                     <img class="mx-auto" src="./assets/images/logo.svg" alt="sidepanel" />
                 </div>
              <DarkModeButton :mode="mode"  @nightMode="nightModeToggle"/>
+     </div>
+
+
+  <div class="w-5/12 h-screen h-auto mx-auto">
+        <button class="py-3 rounded-2xl px-6"><router-link class="flex items-center gap-4" to="/">
+            <img class="mx-auto" src="./assets/images/icon-arrow-left.svg" alt="sideArrow" />
+            <p class="text-black">Go Back</p>
+        </router-link></button>
+
+        <div class="flex justify-between items-center invoice-inherit">
+            <div class="flex gap-5 items-center">
+                <h1>Status</h1>
+                <div class="relative flex">
+                        <div class="myStatus w-28 h-9 text-center border-none rounded py-2 opacity-50 border px-3 " :class="{'status': invoice.status}">
+                        </div>
+                        <div class="absolute top-2 left-5 flex gap-1 items-center">
+                            <p class="myStatus rounded-full w-2 h-2" :class="{'status': invoice.status}"></p>
+                            <h1 class="font-bold myStatu" :class="{'statu': invoice.status}">{{ invoice.statusText }}</h1>
+                        </div>
+                </div>
+            </div>
+            <div>
+                <button @click="editInvoice" class="discard-button focus:outline-none rounded-2xl text-white py-3 px-6">Edit</button>
+                <button @click="deleteInvoice" class="delete-button focus:outline-none mx-6 rounded-2xl text-white py-3 px-6">Delete</button>
+                <button v-if="showMarkBtn" @click="markAsPaid(invoice)" class="save-button focus:outline-none rounded-2xl text-white py-3 px-6">Mark as Paid</button>
+            </div>
         </div>
+
+        <div v-if="invoice" class="invoice-inherit2 openColor">
+            <div class="">
+            <div class="flex justify-between items-start">
+                <div class="openColor">
+                    <p class="thickHeaders"><span class="text-gray-600">#</span>{{ id }}</p>
+                    <p>{{ invoice.description }}</p>
+                </div>
+                <div class="text-right">
+                    <p>{{ invoice.streetAddress }}</p>
+                    <p>{{ invoice.city }}</p>
+                    <p>{{ invoice.postCode }}</p>
+                    <p>{{ invoice.country }}</p>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-3 py-12">
+                <div>
+                    <p class="billTops">Invoice Date</p>
+                    <p class="thickHeaders">{{ invoice.invoiceDate }}</p>
+                    
+                    <p clais="billTops">Payment Due</p>
+                    <p  class="thickHeaders">{{ invoice.paymentTerms}}</p>
+                </div>
+
+                <div>
+                    <p clais="billTops">Bill To</p>
+                    <p class="thickHeaders">{{ invoice.clientName }}</p>
+                    <p>{{ invoice.clientStreetAddress }}</p>
+                    <p>{{ invoice.clientCity }}</p>
+                    <p>{{ invoice.clientPostCode }}</p>
+                    <p>{{ invoice.clientCountry }}</p>
+
+                </div>
+                <div>
+                    <p clais="billTops">Sent To</p>
+                    <p class="thickHeaders">{{ invoice.clientEmail }}</p>
+
+                </div>
+            </div>
+
+            <div style="background:#F9FAFE;" class=" rounded-2xl">
+                <div class="pt-8 pl-8">
+                <div class="grid grid-cols-8 w-full">
+                    <p class="billTops col-span-3">Item Name</p>
+                    <p class="billTops col-span-2">QTY.</p>
+                    <p class="billTops col-span-2">Price</p>
+                    <p class="billTops col-span-1">Total</p>
+                </div>
+
+                <div class="grid grid-cols-8 w-full py-4">
+                    <p class="billTops col-span-3">Item Name</p>
+                    <p class="billTops col-span-2">QTY.</p>
+                    <p class="billTops col-span-2">Price</p>
+                    <p class="col-span-1">&#163;{{ invoice.total }}</p>
+                </div>
+                </div>
+
+                <div style="background:#1E2139;" class="rounded-b-2xl">
+                    <div class="p-8 flex justify-between items-center ">
+                        <p class="text-lg text-gray-100">Amount Due</p>
+                        <p class="text-3xl font-bold text-white">&#163;{{ invoice.total }}</p>
+                    </div>
+                </div>
+            </div>
+
+          </div>
+        </div>
+        
+        <div v-else>
+            Loading....
+        </div>
+  </div>
+
+
+
+     
 
 
 
@@ -40,7 +120,7 @@
     <div class="absolute modalEdit top-0 left-0 w-6/12 spartan h-screen rounded-r-2xl">
 
           
-            <h1 class="py-10 w-9/12 pl-6 mx-auto text-2xl font-semibold">Edit Invoice</h1>
+            <h1 class="py-10 w-9/12 pl-6 mx-auto text-2xl font-semibold">Edit #{{ id }}</h1>
 
                 <form @submit.prevent="saveChanges" class="mx-4 ">
                   <div class="form-holder w-9/12 pl-6 mx-auto overflow-y-scroll">
@@ -116,7 +196,7 @@
 
                             <h1 class="text-gray-400 font-bold py-5 text-xl">items List</h1>
 
-                           <AddItem >/>
+                           <AddItem />
 
                             
                  </div>      
@@ -153,7 +233,7 @@ import DarkModeButton from './components/DarkModeButton.vue'
 import AddItem from './components/AddItem.vue'
 
  export default {
-     props: ['id'],
+     props: ['id',],
 
     components: {
         DarkModeButton,
@@ -164,12 +244,10 @@ import AddItem from './components/AddItem.vue'
          return {
              invoice: {
                clientEmail:'',
-
              },
             showMarkBtn: true,
             showModalEdit: false,
             mode: "light",
-           
          }
      },
      mounted() {
@@ -198,13 +276,13 @@ import AddItem from './components/AddItem.vue'
                 // console.log(data)
                  this.$router.push({ name: 'Home' })
             })
-            .catch(() => {
-                })
+       .catch(() => {
+        })
 
         },
 
-        editInvoice() {
-        this.showModalEdit = !this.showModalEdit
+    editInvoice() {
+       this.showModalEdit = !this.showModalEdit
         },
         closeModalEdit() {
             this.showModalEdit = !this.showModalEdit 
@@ -247,28 +325,61 @@ import AddItem from './components/AddItem.vue'
             })
        .catch(() => {
         })
-        },
+        }
+
     }
+
 
 
  }
 
 </script>
 <style>
- .myStatus{
-     background: rgb(250, 229, 191);
-    color:rgb(243, 130, 0);
+.myStatus{
+     background: rgba(238, 184, 7, 0.473);
+     color:rgb(248, 133, 2);
 }
- .myStatus.status{
-    background: rgb(178, 248, 207);
-    color:rgb(0, 92, 5);
+.myStatus.status{
+    background: rgba(178, 248, 207, 0.733);
+    color:rgb(5, 146, 12);
 }
 
 
  .modalEdit{
-     background: rgb(187, 238, 164);
+     background: #fff;
  }
  .dark .modalEdit{
      background: #000;
  }
+ .invoice-inherit{
+    background: white;
+    margin:15px 0px;
+    padding: 25px;
+    font-size: 13px;
+    font-weight: 400;
+    box-shadow: rgb(72 84 159 / 10%) 0px 10px 10px -10px;;
+    border-radius: 5px;
+}
+ .invoice-inherit2{
+    background: white;
+    margin:15px 0px;
+    padding: 25px;
+    font-size: 13px;
+    font-weight: 400;
+    box-shadow: rgb(72 84 159 / 10%) 0px 10px 10px -10px;;
+    border-radius: 5px;
+}
+
+.billTops{
+    color:rgb(76, 100, 114);
+    font-size: 14px;
+}
+.thickHeaders{
+    color:rgb(12, 1, 34);
+    font-size: 19px;
+    font-weight: 700;
+}
+.openColor{
+    color: #888EB0;
+}
 </style>

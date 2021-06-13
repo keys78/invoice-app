@@ -13,7 +13,7 @@
       <DarkModeButton :mode="mode"  @nightMode="nightModeToggle"/>
     </div>
 
-      <div class="main spartan w-6/12 h-screen mx-auto pt-16">
+      <div class="main spartan xl:w-6/12 w-8/12 h-screen mx-auto pt-16">
         <!--top-->
         <div class="flex justify-between items-center">
 
@@ -86,14 +86,14 @@ import Invoice from './Invoice.vue'
     font-family: 'Spartan', sans-serif;
   }
   .sidebar{
-    background: #373b53;
+    background: #1E2139;
     width: 100px;
   }
   .logo-holder{
     background: #7c5dfa;
   }
   
-  .animate{
+  .animate {
     animation: slide linear 0.3s;
   }
   @keyframes slide {
@@ -108,12 +108,11 @@ import Invoice from './Invoice.vue'
   }
 
   .app{
-    background:#f8f8fb;
-    color:black;
+    background:rgb(247, 247, 250);;
     transition: background 0.5s ease-in-out;
   }
   .dark{
-    background: #000;
+    background: rgb(20, 22, 37);
     color:white;
     transition: background 0.5s ease-in-out;
   }
