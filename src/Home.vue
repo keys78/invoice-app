@@ -109,7 +109,7 @@ import Invoice from './Invoice.vue'
 
   .apple{
     height: 100%;
-    background:red;
+    background:rgb(154, 219, 245);
     /* background:rgb(247, 247, 250);; */
     transition: background 0.5s ease-in-out;
   }

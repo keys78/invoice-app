@@ -96,10 +96,10 @@ import InvoiceDetails from './InvoiceDetails.vue'
             })
     },
     methods: {
-        onload(){
-             const elValue = document.getElementById('myTotal')
-        elValue.innerHTML = "orange"
-        },
+        // onload(){
+        // const elValue = document.getElementById('myTotal')
+        // elValue.innerHTML = "orange"
+        // },
         statusToggle(){
              this.statusBar = !this.statusBar
       },
