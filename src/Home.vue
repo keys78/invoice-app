@@ -82,6 +82,11 @@ import Invoice from './Invoice.vue'
 
 
 <style >
+*{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
   .spartan{
     font-family: 'Spartan', sans-serif;
   }
@@ -108,9 +113,9 @@ import Invoice from './Invoice.vue'
   }
 
   .apple{
-    height: 100%;
-    background:rgb(154, 219, 245);
-    /* background:rgb(247, 247, 250);; */
+    /* background:rgb(154, 219, 245); */
+    background:rgb(247, 247, 250);;
+    background-size:cover;
     transition: background 0.5s ease-in-out;
   }
   .dark{

@@ -93,8 +93,8 @@
                 <div style="background:#1E2139;" class="rounded-b-2xl">
                     <div class="p-8 flex justify-between items-center ">
                         <p class="text-lg text-gray-100">Amount Due</p>
-                        <p id="myTotals" class="text-3xl font-bold text-white">&#163;{{ sumOfTotals }}</p>
-                        <div id="myTotal" class="text-3xl font-bold text-white"></div>
+                        <p ref="nkita" class="text-3xl font-bold text-white">&#163;{{ sumOfTotals }}</p>
+                        <!-- <button @click="cliko" class="text-white">HereToto</button> -->
                     </div>
                 </div>
             </div>
@@ -264,8 +264,13 @@ import Invoice from './Invoice.vue'
             // console.log(data)
             this.invoice = data
             
-            })
+            });
 
+    },
+    updated() {
+         const miko = this.$refs.nkita.innerHTML
+          console.log(miko)
+          localStorage.setItem('myTotal', miko);
     },
 
     methods: {
@@ -324,14 +329,19 @@ import Invoice from './Invoice.vue'
             })
        .catch(() => {
         })
-        }
+      },
+    //   cliko: function () {
+          
+    //   }
 
     },
    computed: {
     sumOfTotals () {
+        if(this.invoice.hasOwnProperty("addItems")) {
         return this.invoice.addItems.reduce((sum, addItem) => {
             return sum += addItem.subTotal;
         }, 0);
+    }
     }
 }
 
