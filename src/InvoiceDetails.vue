@@ -76,10 +76,10 @@
             <div style="background:#F9FAFE;" class=" rounded-2xl">
                 <div class="pt-8 pl-8">
                 <div class="grid grid-cols-8 w-full">
-                    <p class="billTops col-span-3">Item Name</p>
-                    <p class="billTops col-span-2">QTY.</p>
-                    <p class="billTops col-span-2">Price</p>
-                    <p class="billTops col-span-1">Total</p>
+                    <p class="billTops font-semibold col-span-3">Item Name</p>
+                    <p class="billTops font-semibold col-span-2">QTY.</p>
+                    <p class="billTops font-semibold col-span-2">Price</p>
+                    <p class="billTops font-semibold col-span-1">Total</p>
                 </div>
 
                 <div v-for="(addItems, index) in invoice.addItems" :key="index" class="grid grid-cols-8 w-full py-4">
@@ -93,7 +93,8 @@
                 <div style="background:#1E2139;" class="rounded-b-2xl">
                     <div class="p-8 flex justify-between items-center ">
                         <p class="text-lg text-gray-100">Amount Due</p>
-                        <p class="text-3xl font-bold text-white">&#163;{{ invoice.total = addItems.subTotal }}</p>
+                        <p id="myTotals" class="text-3xl font-bold text-white">&#163;{{ sumOfTotals }}</p>
+                        <div id="myTotal" class="text-3xl font-bold text-white"></div>
                     </div>
                 </div>
             </div>
@@ -197,6 +198,7 @@
                             <h1 class="text-gray-400 font-bold py-5 text-xl">items List</h1>
 
                            <AddItem :addItems="invoice.addItems"/>
+                           <Invoice sumOfTotals="sumOfTotals"/>
 
                             
                  </div>      
@@ -231,13 +233,16 @@
 <script>
 import DarkModeButton from './components/DarkModeButton.vue'
 import AddItem from './components/AddItem.vue'
+import Invoice from './Invoice.vue'
 
  export default {
+     name:'InvoiceDetails',
      props: ['id',],
 
     components: {
         DarkModeButton,
         AddItem,
+        Invoice
     },
 
      data() {
@@ -260,6 +265,7 @@ import AddItem from './components/AddItem.vue'
             this.invoice = data
             
             })
+
     },
 
     methods: {
@@ -321,7 +327,13 @@ import AddItem from './components/AddItem.vue'
         }
 
     },
-
+   computed: {
+    sumOfTotals () {
+        return this.invoice.addItems.reduce((sum, addItem) => {
+            return sum += addItem.subTotal;
+        }, 0);
+    }
+}
 
 
  }

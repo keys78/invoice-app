@@ -143,10 +143,10 @@ export default {
                 showMarkBtn: true,
                  addItems:[
                     {
-                itemname: '',
-                quantity:'',
-                price:'',
-                subTotal:'',
+                        itemname: '',
+                        quantity:'',
+                        price:'',
+                        subTotal:'',
                 
                     }
             ],
