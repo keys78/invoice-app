@@ -6,11 +6,16 @@
       </div> -->
  
 
-    <div class="sidebar fixed left-0 px rounded-r-2xl h-screen" style="z-index:1;">
-      <div class="logo-holder w-full py-10 rounded-r-2xl">
+    <div class="sidebar fixed left-0 rounded-r-2xl" style="z-index:1;">
+      <div class="logo-holder rounded-r-2xl">
         <img class="mx-auto" src="./assets/images/logo.svg" alt="sidepanel" />
       </div>
-      <DarkModeButton :mode="mode"  @nightMode="nightModeToggle"/>
+      <div class="navHolders ">
+        <DarkModeButton :mode="mode" class="md:border-b border-r border-gray-700" @nightMode="nightModeToggle"/>
+        <div class="avatar cursor-pointer">
+          <img class="mx-auto rounded-full w-10" src="https://images.pexels.com/photos/371168/pexels-photo-371168.jpeg?crop=faces&fit=crop&h=200&w=200&auto=compress&cs=tinysrgb" alt="sideArrow" />
+        </div>
+      </div>
     </div>
 
       <div class="main spartan">
@@ -61,7 +66,7 @@ import Invoice from './Invoice.vue'
     },
     data() {
       return {
-        showModal: false,
+        // showModal: true,
         mode: 'light'
       }
     },
@@ -91,9 +96,28 @@ import Invoice from './Invoice.vue'
   .sidebar{
     background: #1E2139;
     width: 100px;
+    height:100vh;
   }
   .logo-holder{
     background: #7c5dfa;
+    width: 100%;
+    padding:35px;
+  }
+  .navHolders{
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    bottom:40px;
+  }
+  .avatar{
+    padding-top:25px;
+    padding-left:20px;
+  }
+  .darkPadding{
+    padding:40px;
+  }
+  .modal{
+    height: 100vh;
   }
   
   /* .animate{
@@ -121,4 +145,40 @@ import Invoice from './Invoice.vue'
     color:white;
     transition: background 0.5s ease-in-out;
   }
+
+  @media screen and (max-width: 900px) {
+ .sidebar{
+    width: 100%;
+    height: 86px;
+    border-radius: 0px;
+
+  }
+   .logo-holder{
+    width: 100px;
+    padding:30px;
+  }
+   .navHolders{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    position: absolute;
+    right:20px;
+    bottom: 0px;
+  }
+  .avatar{
+    padding-top:5px;
+  }
+  .darkPadding{
+    padding-bottom:30px;
+  }
+  .main{
+    padding-top: 50px;
+  }
+  .modal{
+    width:100%;
+    padding-top:65px;
+  }
+  }.form-holder{
+    height:410px;
+}
 </style>

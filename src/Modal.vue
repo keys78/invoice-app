@@ -1,12 +1,12 @@
 <template>
-    <div class="backdrop" @click.self="$emit('close')">
+    <div class="backdrop " @click.self="$emit('close')">
         
-        <div class="modal w-6/12 spartan h-screen rounded-r-2xl">
+        <div class="modal xl:w-6/12 w-8/12 spartan rounded-r-2xl" >
             <h1>{{ mode }}</h1>
-            <h1 class="py-12 w-9/12 pl-6 mx-auto text-2xl font-semibold">Create Invoice</h1>
+            <h1 class="py-12 md:w-9/12 w-full pl-6 mx-auto text-2xl font-semibold">Create Invoice</h1>
 
                 <form @submit="saveInvoice" class="mx-4">
-                 <div class="form-holder w-9/12 pl-6 mx-auto overflow-y-scroll">
+                 <div class="form-holder md:w-9/12 w-full md:pl-6 pl-2 mx-auto overflow-y-scroll"  style="z-index:99999999999999;">
                     <h2 class="text-sm font-bold mini-headers pb-6">Bill from</h2>
 
                     <label class="text-sm">Street Address</label>
@@ -84,18 +84,18 @@
                             
                  </div>      
 
-                    <div class="flex justify-between mt-10 w-8/12 mx-auto">
+                    <div class="flex justify-between mt-10 md:w-8/12 w-full mx-auto">
                         <div class="">
-                            <button @click.self="$emit('close')" class="discard-button py-4 px-4 text-center rounded-2xl text-xs font-bold focus:outline-none text-white">Discard</button>
+                            <button @click.self="$emit('close')" class="discard-button py-4 sm:px-4 px-2 text-center rounded-2xl text-xs font-bold focus:outline-none text-white">Discard</button>
                         </div>
 
                         <div class="flex gap-4">
                             <div>
-                                <button class="draft-button py-4 px-4 text-center rounded-2xl text-xs font-bold focus:outline-none bg-black text-white">Save as Draft</button>
+                                <button class="draft-button py-4 sm:px-4 px-2 text-center rounded-2xl text-xs font-bold focus:outline-none bg-black text-white">Save as Draft</button>
                             </div>
 
                             <div>
-                                <button type="submit"  class="save-button py-4 px-4 text-center rounded-2xl text-xs font-bold focus:outline-none text-white">Send & Save</button>
+                                <button type="submit"  class="save-button py-4 sm:px-4 px-2 text-center rounded-2xl text-xs font-bold focus:outline-none text-white">Send & Save</button>
                             </div>
                         </div>
 
@@ -279,5 +279,6 @@ export default {
     font-family: 'Source Serif Pro', serif;
     color:#DFE3FA;
     border:none;
+    transition: background 0.5s ease-in-out;
 }
 </style>
