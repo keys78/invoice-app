@@ -38,7 +38,8 @@
                 <h1 class="col-span-2"><span class="text-sm font-bold">#</span><span class="id-style">{{ invoice.id }}</span></h1>
                 <h1 class="col-span-2">Due{{invoice.invoiceDate}}</h1>
                 <h1 class="col-span-3">{{ invoice.clientName }}</h1>
-                <h1 id="newData" class="col-span-2 font-bold">&#163;</h1>
+                <h1 class="col-span-2">{{ invoice.netTotal }}</h1>
+                <!-- <h1 class="col-span-2 font-bold">&#163;</h1> -->
 
                 <div class="relative flex col-span-2">
                     <div class="myStatus w-28 h-9 text-center border-none rounded py-3 opacity-50 border px-3 " :class="{'status': invoice.status}">
@@ -98,9 +99,7 @@ import InvoiceDetails from './InvoiceDetails.vue'
             
     },
     updated() {
-            const myLog = document.querySelector('#newData');
-            const total = localStorage.getItem('myTotal');
-            myLog.appendChild(document.createTextNode(total));
+            
     },
 
     methods: {

@@ -94,7 +94,7 @@
                     <div class="p-8 flex justify-between items-center ">
                         <p class="text-lg text-gray-100">Amount Due</p>
                         <p ref="nkita" class="text-3xl font-bold text-white">&#163;{{ sumOfTotals }}</p>
-                        <!-- <button @click="cliko" class="text-white">HereToto</button> -->
+                        <p class="text-3xl font-bold text-white">{{ invoice.netTotal}}</p>
                     </div>
                 </div>
             </div>
@@ -198,7 +198,6 @@
                             <h1 class="text-gray-400 font-bold py-5 text-xl">items List</h1>
 
                            <AddItem :addItems="invoice.addItems"/>
-                           <Invoice sumOfTotals="sumOfTotals"/>
 
                             
                  </div>      
@@ -248,14 +247,14 @@ import Invoice from './Invoice.vue'
      data() {
          return {
              invoice: {
-            
+                 
              },
             showModalEdit: false,
             mode: "light",
          }
      },
      mounted() {
-
+           
              fetch('http://localhost:3000/invoices/' + this.id) 
             .then(res => {
                 return res.json();
@@ -266,11 +265,10 @@ import Invoice from './Invoice.vue'
             
             });
 
+            
     },
     updated() {
-         const miko = this.$refs.nkita.innerHTML
-          console.log(miko)
-          localStorage.setItem('myTotal', miko);
+           this.invoice.netTotal = this.sumOfTotals
     },
 
     methods: {
@@ -342,7 +340,8 @@ import Invoice from './Invoice.vue'
             return sum += addItem.subTotal;
         }, 0);
     }
-    }
+    },
+    
 }
 
 

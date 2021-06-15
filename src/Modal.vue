@@ -117,7 +117,7 @@ import AddItem from './components/AddItem.vue'
 
 
 export default {
-    props:['mode'],
+    props:['mode', 'sumOfTotal'],
     name: 'Modal',
     components:{
         AddItem,
@@ -150,8 +150,9 @@ export default {
                 
                     }
             ],
+                
             },
-             
+             sumOfTotal:'',
         }
     },
 
