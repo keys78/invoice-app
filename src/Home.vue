@@ -1,26 +1,26 @@
 <template>
   <div class="apple" :class="mode">
     
-      <div v-if="showModal" class="animate">
+      <!-- <div v-if="showModal" class="animate">
       <Modal :mode="mode" @close="toggleModal" />
-      </div>
+      </div> -->
  
 
-    <div class="sidebar fixed left-0 px rounded-r-2xl h-screen">
+    <div class="sidebar fixed left-0 px rounded-r-2xl h-screen" style="z-index:1;">
       <div class="logo-holder w-full py-10 rounded-r-2xl">
         <img class="mx-auto" src="./assets/images/logo.svg" alt="sidepanel" />
       </div>
       <DarkModeButton :mode="mode"  @nightMode="nightModeToggle"/>
     </div>
 
-      <div class="main spartan xl:w-6/12 w-8/12 mx-auto pt-16">
+      <div class="main spartan">
         <!--top-->
-        <div class="flex justify-between items-center">
+        <!-- <div class="flex justify-between items-center">
 
           <div >
             <h1 class="text-4xl font-bold pb-1 tracking-wide">Invoices</h1>
             <p class="text-xs">There are Total of 0 Invoices</p>
-          </div>
+          </div> -->
 
           <!-- <div class="w-6/12 flex justify-between"> -->
 
@@ -29,13 +29,13 @@
                 <img class="mx-auto" src="./assets/images/icon-arrow-down.svg" alt="sideArrow" />
               </div> -->
 
-              <div @click="toggleModal" class="flex save-button gap-2 px-1 py-2 w-2/12 rounded-3xl items-center justify-center">
+              <!-- <div @click="toggleModal" class="flex save-button gap-2 px-1 py-2 w-2/12 rounded-3xl items-center justify-center">
                 <h1 class="p-2 rounded-full bg-white"><img src="./assets/images/icon-plus.svg" alt="plus-icon" /></h1>
                 <Button text="New Invoice" class="border-none text-white text-xs font-bold"/>
-              </div>
+              </div> -->
 
           <!-- </div> -->
-        </div>
+        <!-- </div> -->
 
             <Invoice />
 
@@ -46,16 +46,16 @@
 
 
 <script >
-import Modal from './Modal.vue'
-import Button from './components/Button.vue'
+// import Modal from './Modal.vue'
+// import Button from './components/Button.vue'
 import DarkModeButton from './components/DarkModeButton.vue'
 import Invoice from './Invoice.vue'
 
   export default {
     name: 'App',
     components: {
-      Modal,
-      Button,
+      // Modal,
+      // Button,
       Invoice,
       DarkModeButton
     },
@@ -66,12 +66,10 @@ import Invoice from './Invoice.vue'
       }
     },
     methods: {
-      toggleModal() {
-        this.showModal = !this.showModal
-      },
-      // statusToggle(){
-      //   console.log('Yes')
+      // toggleModal() {
+      //   this.showModal = !this.showModal
       // },
+     
     
      nightModeToggle() {
        this.mode === 'dark' ? this.mode = 'light' : this.mode = 'dark'
@@ -98,10 +96,10 @@ import Invoice from './Invoice.vue'
     background: #7c5dfa;
   }
   
-  .animate{
+  /* .animate{
     animation: slide linear 0.3s;
-  }
-  @keyframes slide {
+  } */
+  /* @keyframes slide {
     from{
       width:0;
       transform:  translateX(-200px);
@@ -110,7 +108,7 @@ import Invoice from './Invoice.vue'
       width: 50%;
       transition: all 500ms;
     }
-  }
+  } */
 
   .apple{
     /* background:rgb(154, 219, 245); */

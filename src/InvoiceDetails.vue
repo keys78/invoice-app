@@ -94,7 +94,7 @@
                     <div class="p-8 flex justify-between items-center ">
                         <p class="text-lg text-gray-100">Amount Due</p>
                         <p ref="nkita" class="text-3xl font-bold text-white">&#163;{{ sumOfTotals }}</p>
-                        <p class="text-3xl font-bold text-white">{{ invoice.netTotal}}</p>
+                        <!-- <p class="text-3xl font-bold text-white">{{ invoice.netTotal}}</p> -->
                     </div>
                 </div>
             </div>
@@ -267,9 +267,6 @@ import Invoice from './Invoice.vue'
 
             
     },
-    updated() {
-           this.invoice.netTotal = this.sumOfTotals
-    },
 
     methods: {
     deleteInvoice() {
@@ -328,9 +325,6 @@ import Invoice from './Invoice.vue'
        .catch(() => {
         })
       },
-    //   cliko: function () {
-          
-    //   }
 
     },
    computed: {
@@ -396,7 +390,7 @@ import Invoice from './Invoice.vue'
 .openColor{
     color: #888EB0;
 }
-  .animative {
+  /* .animative {
     animation: slide linear 0.3s;
   }
   @keyframes slide {
@@ -408,6 +402,6 @@ import Invoice from './Invoice.vue'
       width: 50%;
       transition: all 500ms;
     }
-  }
+  } */
 
 </style>

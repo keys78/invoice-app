@@ -3,9 +3,9 @@
         
         <div class="modal w-6/12 spartan h-screen rounded-r-2xl">
             <h1>{{ mode }}</h1>
-            <h1 class="py-10 w-9/12 pl-6 mx-auto text-2xl font-semibold">Create Invoice</h1>
+            <h1 class="py-12 w-9/12 pl-6 mx-auto text-2xl font-semibold">Create Invoice</h1>
 
-                <form @submit.prevent="saveInvoice" class="mx-4 ">
+                <form @submit="saveInvoice" class="mx-4">
                  <div class="form-holder w-9/12 pl-6 mx-auto overflow-y-scroll">
                     <h2 class="text-sm font-bold mini-headers pb-6">Bill from</h2>
 
@@ -141,6 +141,7 @@ export default {
                 statusText:'Pending',
                 draft: 'draft',
                 showMarkBtn: true,
+                netTotal:'',
                  addItems:[
                     {
                         itemname: '',
@@ -152,7 +153,7 @@ export default {
             ],
                 
             },
-             sumOfTotal:'',
+             
         }
     },
 
@@ -269,8 +270,14 @@ export default {
     transition: background 0.5s ease-in-out;
 }
  .dark .modal{
-     background:#00003e;
-     color:blanchedalmond;
+     background:rgb(20, 22, 37);
+     color:#DFE3FA;
      transition: background 0.5s ease-in-out;
  }
+ .dark .input-group{
+    background: #1e2139;
+    font-family: 'Source Serif Pro', serif;
+    color:#DFE3FA;
+    border:none;
+}
 </style>
