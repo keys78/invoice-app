@@ -89,7 +89,7 @@
                 </div>
 
 
-                <div class="md:hidden flex flex justify-between" style="z-index:-9999;">
+                <div class="md:hidden flex flex justify-between">
                     <div>
                     <h1 class="col-span-2"><span class="text-sm font-bold">#</span><span class="id-style">{{ invoice.id }}</span></h1>
                     <h1 class="col-span-2 pt-6">Due {{invoice.invoiceDate}}</h1>
@@ -106,7 +106,7 @@
                     </h1>
                     </div>
                     
-                    <div class=""  style="z-index:-9999;">
+                    <div class=""  style="z-index:0;">
                     <h1 class="col-span-3 md:text-center text-right pb-6">{{ invoice.clientName }}</h1>
                     <div class="relative flex col-span-2" >
                         <div class="myStatus w-28 h-9 text-center border-none rounded py-3 opacity-50 border px-3 " :class="{'status': invoice.status}">
@@ -172,7 +172,7 @@ import Button from './components/Button.vue'
             paid: false,
             unpaid: false,
             noInvoice: false,
-            showModal: true
+            showModal: false
             
          }
      },
@@ -204,51 +204,5 @@ import Button from './components/Button.vue'
 </script>
 
 <style>
-.invoice{
-    background: white;
-    margin:16px 0px;
-    padding: 17px 0px;
-    padding-right:10px;
-    padding-left:25px;
-    font-size: 13px;
-    font-weight: 400;
-    color:#666ea0;
-    border-radius: 5px;
-    transition: background 0.5s ease-in-out;
-    transition: 0.2s linear;
- 
-}
-.invoice:hover{
-   margin-left:-20px;
-   transition: linear 0.2s;
-}
-.dark .invoice{
-    background:#1E2139;
-    color:#eff1ff;
-    transition: 0.2s linear;
-    transition: background 0.5s ease-in-out;
-}
-.dark .invoice:hover{
-   margin-left:-20px;
-   transition: linear 0.2s;
-}
 
-.myStatu{
-    color:rgb(255, 153, 0);
-}
-.statu{
-    color:rgb(20, 184, 20);
-}
-.id-style{
-    font-weight: 700;
-}
-.statusDrop{
-    background: #fff;
-}
-.dark .statusDrop {
-    background: #000;
-}
-.fa-asterisk{
-    font-size: 8px;
-}
 </style>

@@ -1,7 +1,7 @@
 <template>
     <div class="backdrop " @click.self="$emit('close')">
         
-        <div class="modal xl:w-6/12 w-8/12 spartan rounded-r-2xl" >
+        <div class="modal xl:w-6/12 w-8/12 spartan rounded-r-2xl animate__animated animate__bounceInLeft " >
             <h1>{{ mode }}</h1>
             <h1 class="py-12 md:w-9/12 w-full pl-6 mx-auto text-2xl font-semibold">Create Invoice</h1>
 
