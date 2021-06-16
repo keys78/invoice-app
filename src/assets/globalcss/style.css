@@ -89,7 +89,7 @@
      bottom: 0;
      background: #fff;
      padding:20px 0;
-     margin-bottom: -200px;
+     margin-bottom: -300px;
      width: 100%;
      margin-left: -40px;
    }}
@@ -142,4 +142,102 @@
 }
 .fa-asterisk{
   font-size: 8px;
+}
+
+
+/**********************************8INVOICE dETAILS************************************************************/
+
+.myStatus{
+    background: rgba(238, 184, 7, 0.473);
+    color:rgb(248, 133, 2);
+}
+.myStatus.status{
+    background: rgba(178, 248, 207, 0.733);
+    color:rgb(5, 146, 12);
+}
+
+
+ .modalEdit{
+     background: #fff;
+ }
+ .dark .modalEdit{
+     background: #000;
+ }
+ .invoice-inherit{
+    background: white;
+    margin:15px 0px;
+    padding: 25px;
+    font-size: 13px;
+    font-weight: 400;
+    box-shadow: rgb(72 84 159 / 10%) 0px 10px 10px -10px;;
+    border-radius: 5px;
+}
+
+ .dark .invoice-inherit{
+    background: rgb(37, 41, 69);
+    color:#eff1ff;
+}
+ .invoice-inherit2{
+    background: white;
+    margin:15px 0px;
+    padding: 25px;
+    font-size: 13px;
+    font-weight: 400;
+    box-shadow: rgb(72 84 159 / 10%) 0px 10px 10px -10px;;
+    border-radius: 5px;
+}
+
+ .dark .invoice-inherit2{
+    background:rgb(30, 33, 57);
+    color:#eff1ff;
+    transition: 0.2s linear;
+    transition: background 0.5s ease-in-out;
+}
+.dark .thickHeaders{
+     color:#eff1ff;
+}
+
+.lakudo{
+    background:#F9FAFE;
+    color:#eff1ff;
+}
+
+.dark .lakudo{
+    background: rgb(37, 41, 69);
+    color:#eff1ff;
+}
+
+.billTops{
+    color:rgb(76, 100, 114);
+    font-size: 14px;
+}
+.dark .billTops{
+    color:#eff1ff;
+}
+
+.dark .lightio{
+    color:#eff1ff;
+}
+
+.thickHeaders{
+    color:rgb(12, 1, 34);
+    font-size: 19px;
+    font-weight: 700;
+}
+.openColor{
+    color: #888EB0;
+}
+.ndiMpa{
+    background: #1E2139;
+}
+
+.dark .ndiMpa{
+    background: #010311;;
+}
+.dark .deletie{
+    background: #010311;;
+     color:#eff1ff;
+}
+.dark .el-buttono{
+    background: rgb(37, 41, 69);
 }

@@ -6,15 +6,15 @@
       </div>
       <div class="navHolders ">
         <DarkModeButton :mode="mode" class="md:border-b border-r border-gray-700" @nightMode="nightMode"/>
-        <div class="avatar cursor-pointer">
+        <div @click="openProfile" class="avatar  cursor-pointer">
           <img class="mx-auto rounded-full w-10" src="https://images.pexels.com/photos/371168/pexels-photo-371168.jpeg?crop=faces&fit=crop&h=200&w=200&auto=compress&cs=tinysrgb" alt="sideArrow" />
         </div>
       </div>
     </div>
 
 
-  <div class="xl:w-5/12 lg:w-7/12 md:w-9/12 w-11/12 mx-auto mx-auto">
-        <button class="py-3 mt-12 rounded-2xl px-6"><router-link class="flex items-center gap-4" to="/">
+  <div class="xl:w-5/12 lg:w-7/12 md:w-9/12 w-11/12 mx-auto mx-auto sm:pt-2 pt-16">
+        <button class="py-3 mt-12 rounded-2xl sm:px-6 px-2"><router-link class="flex items-center gap-4" to="/">
             <img class="mx-auto" src="./assets/images/icon-arrow-left.svg" alt="sideArrow" />
             <p class="text-black lightio">Go Back</p>
         </router-link></button>
@@ -63,7 +63,7 @@
                 </div>
 
                 <div>
-                    <p clais="billTops">Bill To</p>
+                    <p class="billTops">Bill To</p>
                     <p class="thickHeaders">{{ invoice.clientName }}</p>
                     <p>{{ invoice.clientStreetAddress }}</p>
                     <p>{{ invoice.clientCity }}</p>
@@ -72,7 +72,7 @@
 
                 </div>
                 <div>
-                    <p clais="billTops">Sent To</p>
+                    <p class="billTops sm:pt-0 pt-8">Sent To</p>
                     <p class="thickHeaders">{{ invoice.clientEmail }}</p>
 
                 </div>
@@ -91,7 +91,7 @@
                     <p class="billTops col-span-3">{{ addItems.itemname }}</p>
                     <p class="billTops col-span-2">{{ addItems.quantity }}</p>
                     <p class="billTops col-span-2">{{ addItems.price }}</p>
-                    <p class="col-span-1">&#163;{{ addItems.subTotal = addItems.quantity*addItems.price }}</p>
+                    <p class="billTops col-span-1">&#163;{{ addItems.subTotal = addItems.quantity*addItems.price }}</p>
                 </div>
                 </div>
 
@@ -113,6 +113,7 @@
   </div>
     <p class="py-12"></p>
 
+    <!--utility class-->
     <div v-if="deleteModali" @click.self="cancelBtn" class="backdrop ">
         <div class="deletie bg-white w-4/12 p-10 mx-auto mt-64 rounded-3xl animate__animated animate__headShake">
             <h1 class="text-black deletie text-3xl font-bold pb-2">Confirm Deletion</h1>
@@ -127,7 +128,16 @@
         </div>
     </div>
 
-
+    <div v-if="showProfile" @click.self="closeProfile" class="mamalet w-full fixed top-0 left-0 h-screen p-10 mx-auto rounded-3xl animate__animated animate__zoomInDown">
+        <div class="mt-40 xl:w-4/12 md:w-6/12 sm:w-8/12 w-11/12 mx-auto">
+            <img class="mx-auto rounded-full w-40" src="https://images.pexels.com/photos/371168/pexels-photo-371168.jpeg?crop=faces&fit=crop&h=200&w=200&auto=compress&cs=tinysrgb" alt="sideArrow" />
+            <h1 class="text-3xl py-4 text-center">Emcodes</h1>
+            <div class="mx-auto text-center w-5/12">
+                <div class="flex items-center hover:text-yellow-600 gap-5"><a class="pb-2" href="https://twitter.com/Emmy31087589">Connect with me</a><img class="w-4" src="./assets/images/icon-external-link.svg" alt="link" /></div>
+                <div class="flex items-center hover:text-yellow-600 gap-5"><a href="https://github.com/Em-codes/invoice-app">Github Repo</a><img class="w-4" src="./assets/images/icon-external-link.svg" alt="link" /></div>
+             </div>
+        </div>
+    </div>
      
 
 
@@ -142,7 +152,7 @@
           
             <h1 class="py-12 md:w-9/12 w-full pl-6 mx-auto text-2xl font-semibold">Edit #{{ id }}</h1>
 
-                <form @submit.prevent="saveChanges" class="mx-4 ">
+                <form @submit="saveChanges" class="mx-4 ">
                   <div class="form-holder md:w-9/12 w-full md:pl-6 pl-2 mx-auto overflow-y-scroll">
                     <h2 class="text-sm font-bold mini-headers pb-6">Bill from</h2>
 
@@ -269,20 +279,17 @@ import Invoice from './Invoice.vue'
                  
              },
             showModalEdit: false,
-            deleteModali:false
+            deleteModali:false,
+            showProfile:false
          }
      },
      mounted() {
            
-             fetch('http://localhost:3000/invoices/' + this.id) 
-            .then(res => {
-                return res.json();
-                })
-            .then(data => {
-            // console.log(data)
-            this.invoice = data
-            
-            });
+        fetch('http://localhost:3000/invoices/' + this.id) 
+        .then(res => {return res.json()})
+        .then(data => {this.invoice = data
+        
+        });
 
             
     },
@@ -290,65 +297,47 @@ import Invoice from './Invoice.vue'
     methods: {
     deleteInvoice() {
  
-            fetch('http://localhost:3000/invoices/' + this.id, {
-                method: 'DELETE',
-                headers: {'Accept': 'application/json, text/plain, */*','Content-Type': 'application/json'},
-                body: JSON.stringify(this.invoice)
-            })
-           .then(res => {return res.json();})
-            .then(data => {
-                // console.log(data)
-                 this.$router.push({ name: 'Home' })
-            })
-       .catch(() => {
+        fetch('http://localhost:3000/invoices/' + this.id, {
+            method: 'DELETE', headers: {'Accept': 'application/json, text/plain, */*','Content-Type': 'application/json'},
+            body: JSON.stringify(this.invoice)
         })
+        .then(res => {return res.json();})
+        .then(data => { this.$router.push({ name: 'Home' })})
+        .catch(() => {})
 
         },
 
-    editInvoice() {
-       this.showModalEdit = !this.showModalEdit
-        },
-        closeModalEdit() {
-            this.showModalEdit = !this.showModalEdit 
-        },
-        closeModalEdi() {
-            this.showModalEdit = !this.showModalEdit 
-        },
-        deleteModal() {
-            this.deleteModali = true
-        },
-        cancelBtn() {
-            this.deleteModali = false
-        },
+        editInvoice() {this.showModalEdit = !this.showModalEdit},
+        closeModalEdit() {this.showModalEdit = !this.showModalEdit },
+        closeModalEdi() {this.showModalEdit = !this.showModalEdit },
+        deleteModal() {this.deleteModali = true},
+        cancelBtn() {this.deleteModali = false},
+        closeProfile() {this.showProfile = false},
+        openProfile() {this.showProfile = !this.showProfile},
 
 
         markAsPaid(invoice) {
             invoice.status = true
             this.invoice.showMarkBtn = false
             this.invoice.statusText = "Paid"
-          
-              fetch('http://localhost:3000/invoices/' + this.id, {
-                method: 'PATCH',headers: {'Accept': 'application/json, text/plain, */*','Content-Type': 'application/json'},body: JSON.stringify(this.invoice)}).then(res => {return res.json();}).then(data => {})
+            fetch('http://localhost:3000/invoices/' + this.id, {
+            method: 'PATCH',headers: {'Accept': 'application/json, text/plain, */*','Content-Type': 'application/json'},body: JSON.stringify(this.invoice)}).then(res => {return res.json();}).then(data => {})
         },
 
         nightMode() {
-        this.mode === 'dark' ? this.mode = 'light' : this.mode = 'dark'
+        // localStorage.setItem('mode', this.mode)
+       this.mode === 'dark' ? this.mode = 'light' : this.mode = 'dark'
         },
 
         saveChanges() {
-             fetch('http://localhost:3000/invoices/' + this.id, {
-                method: 'PATCH',
-                headers: {'Accept': 'application/json, text/plain, */*','Content-Type': 'application/json'},
-                body: JSON.stringify(this.invoice)
+            fetch('http://localhost:3000/invoices/' + this.id, {
+            method: 'PATCH',
+            headers: {'Accept': 'application/json, text/plain, */*','Content-Type': 'application/json'},
+            body: JSON.stringify(this.invoice)
             })
-           .then(res => {return res.json();})
-            .then(data => {
-                console.log(data)
-                // this.invoice = data
-                 
-            })
-       .catch(() => {
-        })
+            .then(res => {return res.json();})
+            .then(data => {console.log(data)})
+            .catch(() => {})
       },
 
     },
@@ -368,99 +357,5 @@ import Invoice from './Invoice.vue'
 
 </script>
 <style>
-.myStatus{
-     background: rgba(238, 184, 7, 0.473);
-     color:rgb(248, 133, 2);
-}
-.myStatus.status{
-    background: rgba(178, 248, 207, 0.733);
-    color:rgb(5, 146, 12);
-}
-
-
- .modalEdit{
-     background: #fff;
- }
- .dark .modalEdit{
-     background: #000;
- }
- .invoice-inherit{
-    background: white;
-    margin:15px 0px;
-    padding: 25px;
-    font-size: 13px;
-    font-weight: 400;
-    box-shadow: rgb(72 84 159 / 10%) 0px 10px 10px -10px;;
-    border-radius: 5px;
-}
-
- .dark .invoice-inherit{
-    background: rgb(37, 41, 69);
-    color:#eff1ff;
-}
- .invoice-inherit2{
-    background: white;
-    margin:15px 0px;
-    padding: 25px;
-    font-size: 13px;
-    font-weight: 400;
-    box-shadow: rgb(72 84 159 / 10%) 0px 10px 10px -10px;;
-    border-radius: 5px;
-}
-
- .dark .invoice-inherit2{
-    background:rgb(30, 33, 57);
-    color:#eff1ff;
-    transition: 0.2s linear;
-    transition: background 0.5s ease-in-out;
-}
-.dark .thickHeaders{
-     color:#eff1ff;
-}
-
-.lakudo{
-    background:#F9FAFE;
-    color:#eff1ff;
-}
-
-.dark .lakudo{
-    background: rgb(37, 41, 69);
-    color:#eff1ff;
-}
-
-.billTops{
-    color:rgb(76, 100, 114);
-    font-size: 14px;
-}
-.dark .billTops{
-    color:#eff1ff;
-}
-
-.dark .lightio{
-    color:#eff1ff;
-}
-
-.thickHeaders{
-    color:rgb(12, 1, 34);
-    font-size: 19px;
-    font-weight: 700;
-}
-.openColor{
-    color: #888EB0;
-}
-.ndiMpa{
-    background: #1E2139;
-}
-
-.dark .ndiMpa{
-    background: #010311;;
-}
-.dark .deletie{
-    background: #010311;;
-     color:#eff1ff;
-}
-.dark .el-buttono{
-    background: rgb(37, 41, 69);
-}
 
 </style>
