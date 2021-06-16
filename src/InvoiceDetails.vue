@@ -33,7 +33,7 @@
             </div>
             <div class="el-buttono">
                 <button @click="editInvoice" class="sm:ml-0 ml-7 discard-button focus:outline-none rounded-2xl text-white py-3 sm:px-6 px-3">Edit</button>
-                <button @click="deleteInvoice" class="sm:ml-4 ml-20 delete-button focus:outline-none mx-6 rounded-2xl text-white py-3 sm:px-6 px-3">Delete</button>
+                <button @click="deleteModal" class="sm:ml-4 ml-20 delete-button focus:outline-none mx-6 rounded-2xl text-white py-3 sm:px-6 px-3">Delete</button>
                 <button v-if="invoice.showMarkBtn" @click="markAsPaid(invoice)" class="save-button focus:outline-none rounded-2xl text-white py-3 sm:px-6 px-2">Mark as Paid</button>
             </div>
         </div>
@@ -111,10 +111,20 @@
             Loading....
         </div>
   </div>
-    <p class="py-4"></p>
+    <p class="py-12"></p>
 
-    <div class="backdrop">
-        <div class="modal p-96px bg-white"></div>
+    <div v-if="deleteModali" @click.self="cancelBtn" class="backdrop ">
+        <div class="deletie bg-white w-4/12 p-10 mx-auto mt-64 rounded-3xl animate__animated animate__headShake">
+            <h1 class="text-black deletie text-3xl font-bold pb-2">Confirm Deletion</h1>
+            <h1 class="pb-1">Are you sure you want to delete invoice no #{{ id }}. This action cannot be undone.</h1>
+            <div class="flex justify-between">
+                <div></div>
+                <div>
+                <button @click="cancelBtn" class="discard-button py-4 px-4 text-center rounded-2xl text-xs font-bold focus:outline-none text-white">Cancel</button>
+                <button @click="deleteInvoice" class="sm:ml-4 ml-20 delete-button focus:outline-none mx-6 rounded-2xl text-white py-3 sm:px-6 px-3">Delete</button>
+                </div>
+            </div>
+        </div>
     </div>
 
 
@@ -259,6 +269,7 @@ import Invoice from './Invoice.vue'
                  
              },
             showModalEdit: false,
+            deleteModali:false
          }
      },
      mounted() {
@@ -302,6 +313,12 @@ import Invoice from './Invoice.vue'
         },
         closeModalEdi() {
             this.showModalEdit = !this.showModalEdit 
+        },
+        deleteModal() {
+            this.deleteModali = true
+        },
+        cancelBtn() {
+            this.deleteModali = false
         },
 
 
@@ -437,6 +454,10 @@ import Invoice from './Invoice.vue'
 
 .dark .ndiMpa{
     background: #010311;;
+}
+.dark .deletie{
+    background: #010311;;
+     color:#eff1ff;
 }
 .dark .el-buttono{
     background: rgb(37, 41, 69);
