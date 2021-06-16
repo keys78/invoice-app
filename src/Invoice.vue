@@ -30,8 +30,8 @@
                     </div>
                 </div>
 
-                <div v-if="statusBar" class="relative statusDrop">
-                    <div class="absolute rounded sm:pl-6 pl-2 pt-3 bg-white px-8 shadow spartan">
+                <div v-if="statusBar" class="relative ">
+                    <div class="absolute rounded sm:pl-6 pl-2 pt-3 statusDrop px-8 shadow spartan">
                             <div>
                                 <input  type="checkbox" name="status" v-model="paid"/>
                                 <label class="font-bold text-xs pl-3" for="Paid">Paid</label>

@@ -265,7 +265,7 @@ import Invoice from './Invoice.vue'
 
  export default {
      name:'InvoiceDetails',
-     props: ['id','mode'],
+     props: ['id'],
 
     components: {
         DarkModeButton,
@@ -280,18 +280,27 @@ import Invoice from './Invoice.vue'
              },
             showModalEdit: false,
             deleteModali:false,
-            showProfile:false
+            showProfile:false,
+            mode: ""
          }
      },
-     mounted() {
-           
+
+    beforeMount() {
+      this.currentmode = localStorage.getItem('mode')
+      this.mode = this.currentmode
+      
+       const miko = this.$refs.nkita.innerHTML
+     console.log(miko)
+     localStorage.setItem('myTotal', miko);
+    },
+
+
+     mounted() {  
         fetch('http://localhost:3000/invoices/' + this.id) 
         .then(res => {return res.json()})
         .then(data => {this.invoice = data
-        
         });
-
-            
+   
     },
 
     methods: {
@@ -325,8 +334,8 @@ import Invoice from './Invoice.vue'
         },
 
         nightMode() {
-        // localStorage.setItem('mode', this.mode)
-       this.mode === 'dark' ? this.mode = 'light' : this.mode = 'dark'
+        this.mode === 'dark' ? this.mode = 'light' : this.mode = 'dark'
+        localStorage.setItem('mode', this.mode)
         },
 
         saveChanges() {

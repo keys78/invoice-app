@@ -45,7 +45,7 @@ import Invoice from './Invoice.vue'
     },
     data() {
       return {
-        mode: 'light',
+        mode: '',
         showProfile:false
 
       }
@@ -53,18 +53,13 @@ import Invoice from './Invoice.vue'
 
     beforeMount() {
       this.currentmode = localStorage.getItem('mode')
-      console.log(this.currentmode)
-      if (this.currentmode = 'light') {
-        this.mode == 'light'
-      } else {
-        this.mode == 'dark'
-      }
+      this.mode = this.currentmode
     },
 
     methods: {
      nightMode() {
-       localStorage.setItem('mode', this.mode)
        this.mode === 'dark' ? this.mode = 'light' : this.mode = 'dark'
+       localStorage.setItem('mode', this.mode)
     
       },
 

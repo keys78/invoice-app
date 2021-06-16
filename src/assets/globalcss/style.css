@@ -137,8 +137,8 @@
 .statusDrop{
   background: #fff;
 }
-.dark .statusDrop {
-  background: #000;
+.dark .statusDrop{
+  background: #1E2139;
 }
 .fa-asterisk{
   font-size: 8px;
