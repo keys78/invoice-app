@@ -165,7 +165,7 @@ export default {
             const myId = text ; this.invoice.id = myId})
             return uniqueId(),
  
-            fetch('http://localhost:3000/invoices', {
+            fetch('./invoices.json', {
                 method: 'POST',
                 headers: {'Accept': 'application/json, text/plain, */*','Content-Type': 'application/json'},
                 body: JSON.stringify(this.invoice)

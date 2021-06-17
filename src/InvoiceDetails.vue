@@ -115,7 +115,7 @@
 
     <!--utility class-->
     <div v-if="deleteModali" @click.self="cancelBtn" class="backdrop ">
-        <div class="deletie bg-white w-4/12 p-10 mx-auto mt-64 rounded-3xl animate__animated animate__headShake">
+        <div class="deletie bg-white xl:w-4/12 md:w-6/12 sm:w-8/12 w-11/12 sm:p-10 p-5 mx-auto mt-64 rounded-3xl animate__animated animate__headShake">
             <h1 class="text-black deletie text-3xl font-bold pb-2">Confirm Deletion</h1>
             <h1 class="pb-1">Are you sure you want to delete invoice no #{{ id }}. This action cannot be undone.</h1>
             <div class="flex justify-between">
