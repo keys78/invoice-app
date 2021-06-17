@@ -95,7 +95,7 @@
                             </div>
 
                             <div>
-                                <button type="submit"  class="save-button py-4 sm:px-4 px-2 text-center rounded-2xl text-xs font-bold focus:outline-none text-white">Send & Save</button>
+                                <button type="submit" @submit="formVal" class="save-button py-4 sm:px-4 px-2 text-center rounded-2xl text-xs font-bold focus:outline-none text-white">Send & Save</button>
                             </div>
                         </div>
 
@@ -179,7 +179,11 @@ export default {
         })
 
         },
-
+        formVal() {
+            if(this.saveInvoice.input === ''){
+                console.log('fill in details')
+            }
+        }
    
     }
 

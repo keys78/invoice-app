@@ -1,0 +1,171 @@
+[
+	{
+		"id": "THDL61",
+		"streetAddress": "ojuelagba",
+		"city": "Lagos",
+		"postCode": "100100",
+		"country": "Nigeria",
+		"clientName": "Emmasky Laporte",
+		"clientEmail": "dezizdd",
+		"clientStreetAddress": "Awada, Onitsha",
+		"clientCity": "Onitsha",
+		"clientCountry": "Nigeria",
+		"clientPostCode": "100010",
+		"invoiceDate": "2021-06-15",
+		"description": "Sharwama Purchase",
+		"statusText": "Pending",
+		"draft": "draft",
+		"showMarkBtn": true,
+		"netTotal": "",
+		"addItems": [
+		  {
+			"itemname": "Oil",
+			"quantity": "2",
+			"price": "200",
+			"subTotal": 400
+		  },
+		  {
+			"itemname": "Bread",
+			"quantity": "5",
+			"price": "100",
+			"subTotal": 500
+		  }
+		],
+		"paymentTerms": "Net 7 Days"
+	  },
+	  {
+		"id": "YB66IL",
+		"streetAddress": "Awsda",
+		"city": "Obosi",
+		"postCode": "100010",
+		"country": "Nigeria",
+		"clientName": "Charles",
+		"clientEmail": "Charles13@gmail.com",
+		"clientStreetAddress": "Aluu, ph",
+		"clientCity": "ph",
+		"clientCountry": "Nigeria",
+		"clientPostCode": "100010",
+		"invoiceDate": "2021-06-17",
+		"description": "Buying Bitcoin",
+		"statusText": "Paid",
+		"draft": "draft",
+		"showMarkBtn": false,
+		"netTotal": "",
+		"addItems": [
+		  {
+			"itemname": "Eth",
+			"quantity": "1",
+			"price": "3000",
+			"subTotal": 3000
+		  },
+		  {
+			"itemname": "Doge",
+			"quantity": "500",
+			"price": "50",
+			"subTotal": 25000
+		  }
+		],
+		"paymentTerms": "Net 21 Days",
+		"status": true
+	  },
+	  {
+		"id": "DDNS14",
+		"streetAddress": "st john",
+		"city": "ph",
+		"postCode": "100010",
+		"country": "Nigeria",
+		"clientName": "Maudy Bread",
+		"clientEmail": "mauds@foodmail.com",
+		"clientStreetAddress": "Obosi Awada",
+		"clientCity": "Port Harcourt",
+		"clientCountry": "Nigeria",
+		"clientPostCode": "100010",
+		"invoiceDate": "2021-06-17",
+		"description": "Buying soup items",
+		"statusText": "Pending",
+		"draft": "draft",
+		"showMarkBtn": true,
+		"netTotal": "",
+		"addItems": [
+		  {
+			"itemname": "Egusi",
+			"quantity": "2",
+			"price": "400",
+			"subTotal": ""
+		  },
+		  {
+			"itemname": "Pepper",
+			"quantity": "5",
+			"price": "200"
+		  },
+		  {
+			"itemname": "Garri",
+			"quantity": "3",
+			"price": "900"
+		  }
+		],
+		"paymentTerms": "Net 7 Days"
+	  },
+	  {
+		"id": "VXRQFQ",
+		"streetAddress": "mgbuoba port harcourt",
+		"city": "Port harcourt",
+		"postCode": "23454",
+		"country": "Nigeria",
+		"clientName": "Adora Uwa N'ile",
+		"clientEmail": "prettyadora@gmail.com",
+		"clientStreetAddress": "Amune Ovum",
+		"clientCity": "Ovim",
+		"clientCountry": "Nigeria",
+		"clientPostCode": "567567",
+		"invoiceDate": "2021-02-03",
+		"description": "Catery services ",
+		"statusText": "Paid",
+		"draft": "draft",
+		"showMarkBtn": false,
+		"netTotal": "",
+		"addItems": [
+		  {
+			"itemname": "Spoons  plate",
+			"quantity": "24",
+			"price": "200",
+			"subTotal": 4800
+		  },
+		  {
+			"itemname": "meat",
+			"quantity": "3",
+			"price": "2000",
+			"subTotal": 6000
+		  },
+		  {
+			"itemname": "vpn",
+			"quantity": "3",
+			"price": "9",
+			"subTotal": 27
+		  }
+		],
+		"paymentTerms": "Net 7 Days",
+		"status": true
+	  },
+	  {
+		"id": "I9LOIJ",
+		"streetAddress": "",
+		"city": "",
+		"postCode": "",
+		"country": "",
+		"clientName": "",
+		"clientEmail": "",
+		"clientStreetAddress": "",
+		"clientCity": "",
+		"clientCountry": "",
+		"clientPostCode": "",
+		"invoiceDate": "",
+		"description": "",
+		"statusText": "Paid",
+		"draft": "draft",
+		"showMarkBtn": false,
+		"netTotal": "",
+		"addItems": [],
+		"status": true
+	  }
+]

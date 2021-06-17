@@ -289,9 +289,6 @@ import Invoice from './Invoice.vue'
       this.currentmode = localStorage.getItem('mode')
       this.mode = this.currentmode
       
-       const miko = this.$refs.nkita.innerHTML
-     console.log(miko)
-     localStorage.setItem('myTotal', miko);
     },
 
 

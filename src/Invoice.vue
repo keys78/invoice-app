@@ -178,9 +178,9 @@ import Button from './components/Button.vue'
      },
       mounted() {
 
-        fetch('http://localhost:3000/invoices') 
+        fetch('./invoices.json') 
         .then(res => {return res.json();})
-        .then(data => {this.invoices = data})
+        .then(data => {console.log(data),this.invoices = data})
         .catch((err) => {this.errMsg = "e don burst"}) 
         this.invoices.length > 0 ? this.noInvoice = false : this.noInvoice = true
     },
