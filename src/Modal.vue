@@ -179,11 +179,6 @@ export default {
         })
 
         },
-        formVal() {
-            if(this.saveInvoice.input === ''){
-                console.log('fill in details')
-            }
-        }
    
     }
 
