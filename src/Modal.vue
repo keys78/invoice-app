@@ -1,7 +1,7 @@
 <template>
     <div class="backdrop " @click.self="$emit('close')">
         
-        <div class="modal xl:w-6/12 w-8/12 spartan rounded-r-2xl animate__animated animate__bounceInLeft " >
+        <div class="modal xl:w-6/12 w-8/12 spartan rounded-r-2xl" >
             <h1>{{ mode }}</h1>
             <h1 class="py-12 md:w-9/12 w-full pl-6 mx-auto text-2xl font-semibold">Create Invoice</h1>
 
@@ -95,7 +95,7 @@
                             </div>
 
                             <div>
-                                <button type="submit" @submit="formVal" class="save-button py-4 sm:px-4 px-2 text-center rounded-2xl text-xs font-bold focus:outline-none text-white">Send & Save</button>
+                                <button type="submit"  class="save-button py-4 sm:px-4 px-2 text-center rounded-2xl text-xs font-bold focus:outline-none text-white">Send & Save</button>
                             </div>
                         </div>
 
@@ -103,10 +103,7 @@
 
 
                 </form>
-               
-
-            
-
+ 
         </div>
 
     </div>
@@ -165,7 +162,7 @@ export default {
             const myId = text ; this.invoice.id = myId})
             return uniqueId(),
  
-            fetch('./invoices.json', {
+            fetch('http://localhost:3000/invoices', {
                 method: 'POST',
                 headers: {'Accept': 'application/json, text/plain, */*','Content-Type': 'application/json'},
                 body: JSON.stringify(this.invoice)
@@ -179,6 +176,7 @@ export default {
         })
 
         },
+
    
     }
 

@@ -59,7 +59,7 @@
 
 
         <div v-if="invoices.length">
-            <div v-for="invoice in filteredInvoices" :key="invoice.id" class="invoice">
+            <div v-for="invoice in invoices" :key="invoice.id" class="invoice">
                 <router-link :to="{name: 'InvoiceDetails', params: { id: invoice.id }}">
                 <div class="grid grid-cols-12 items-center md:grid hidden">
                     <h1 class="col-span-2"><span class="text-sm font-bold">#</span><span class="id-style">{{ invoice.id }}</span></h1>
@@ -119,20 +119,6 @@
                     </div>
                 </div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
                 </router-link>
             </div>
         </div>
@@ -178,7 +164,7 @@ import Button from './components/Button.vue'
      },
       mounted() {
 
-        fetch('./db.json') 
+        fetch('http://localhost:3000/invoices/') 
         .then(res => {return res.json();})
         .then(data => {this.invoices = data})
         .catch((err) => {this.errMsg = "e don burst"}) 

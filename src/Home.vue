@@ -63,7 +63,7 @@ import Invoice from './Invoice.vue'
     
       },
 
-        closeProfile() {
+      closeProfile() {
       this.showProfile = false
       },
       openProfile() {
